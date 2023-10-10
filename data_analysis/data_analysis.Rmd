@@ -1,0 +1,156 @@
+---
+title: "Football Image Perception Analysis"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lme4)
+if(!require('DescTools')) {
+  install.packages('DescTools')
+  library('DescTools')
+}
+
+options(digits=3)
+```
+
+# Introduction
+
+This notebook performs a statistical analysis of an experiment where subjects were asked to identify the colour of the majority team, either red or blue, in a series of football pitch images. We aim to examine whether the team color influences the accuracy of responses.
+
+# Data loading
+
+```{r}
+# Load the data
+data <- read.csv("../synthetic_enriched_gt.csv")
+
+# Peek into the data
+head(data)
+```
+
+# Data Preprocessing
+
+```{r}
+# Creating a binary accuracy variable
+data$correct_response <- ifelse(data$expected_side == data$response_side, 1, 0)
+
+# Encoding 'expected_side' as a factor variable
+data$expected_side <- as.factor(data$expected_side)
+data$response_side <- as.factor(data$response_side)
+data$gender <- as.factor(data$gender)
+data$knows_football <- as.factor(data$knows_football)
+data$scene_id <- as.factor(data$scene_id)
+data$subject_id <- as.factor(data$subject_id)
+
+# Summary of preprocessing
+summary(data$correct_response)
+table(data$expected_side)
+```
+
+# Statistical tests
+
+## Chi-Square Test
+
+The chi-squared test is used to test for independence between two categorical variables. We perform a chi-square test to examine whether the color of the majority team is independent from the response accuracy. If the color affects the accuracy then the p-value of this test will be significant (< $\alpha=0.05$)
+
+```{r}
+# Constructing a contingency table
+contingency_table <- table(data$expected_side, data$correct_response)
+print(contingency_table)
+
+# Performing the chi-square test
+chi2_test <- chisq.test(contingency_table)
+
+# Printing the results
+print(chi2_test)
+```
+## Proportion test
+
+We perform a proportion test to examine whether the proportion of correct answers (accuracy) is different when the majority team is red or when it's blue.
+This is actually incorrect, since the same subject is and the same image is tested for both conditions of interest (expected_side).
+
+```{r}
+rct = contingency_table[c(2, 1), c(2, 1)]
+print(rct)
+prop.test(rct, correct=TRUE)
+```
+## McNemar's test
+
+The hypothesis under consideration is if response accuracy increases if the majority side is red. The factors are paired because each subject and each scene is tested for both red and blue majority configurations. Because the tested factors are paired and binary, the assumptions of McNemar's test are satisfied and this test can be applied to test for the presence of an effect.
+
+```{r}
+
+# Split data into two sets: one for 'red' and one for 'blue'
+data_red <- data[data$expected_side == 'red', c("subject_id", "scene_id", "correct_response")]
+data_blue <- data[data$expected_side == 'blue', c("subject_id", "scene_id", "correct_response")]
+
+# Merge the two sets side by side using subject_id as the key
+wide_data <- merge(data_red, data_blue, by = c("subject_id", "scene_id"), suffixes = c("_red", "_blue"))
+
+# Perform McNemar's Test
+mcnemar_test_result <- mcnemar.test(wide_data$correct_response_red, wide_data$correct_response_blue, correct=TRUE)
+
+# Display the result
+print(mcnemar_test_result)
+```
+Given the contingency table, we can calculate the confidence interval for the odds ratio. The Odds Ratio (OR) is a measure of association between an exposure and an outcome. In this case the OR represents the ratio of the odds that the response of a subject is correct when the majority team is red, relative to the odds of a correct answer when the majority team colour is blue.
+
+```{r}
+or = OddsRatio(rct, method="midp", conf.level=0.95)
+print(or)
+```
+The calculated OR value of `r or[1]` means that odds increase by `r or[1]-1`% when the majority team color is red. The 95% confidence interval for the OR is `r or[1:2]`, and because it doesn't include the value of 1 it means that the effect is significant, as previously verified by the McMnemar test.
+
+# Logistic regression 
+```{r}
+summary(glm(correct_response ~ expected_side, data = data, family = binomial))
+```
+
+```{r}
+summary(glm(correct_response ~ gender, data = data, family = binomial))
+```
+
+```{r}
+summary(glm(correct_response ~ age, data = data, family = binomial))
+```
+
+## Subject as random effect
+
+We fit a GLMM with a logistic link function to examine the influence of team color on response accuracy, considering within-subject variability.
+
+```{r}
+# Fitting the GLMM
+glmm_model <- glmer(correct_response ~ expected_side + (1 | subject_id), 
+                    data = data, 
+                    family = binomial)
+
+# Printing the summary of the model
+model_summary = summary(glmm_model)
+print(model_summary)
+```
+The coefficient for expected_sidered suggests that, on the log odds scale, being in the "red" condition is associated with an increase of `r model_summary$coefficients[2, 1]` compared to the "blue" condition. This effect is statistically significant (p = `r model_summary$coefficients[2, 4]`).
+
+## Subject and scene as random effects
+
+Next, we fit a similar model but we additionally consider considering within-subject within-scene variability. This is motivated by the fact that the grouping of players in a scene might make it easier or harder to estimate the majority colour, regardless of the actual color of the majority.
+
+```{r}
+# If we assume that the accuracy depends on the expected side, the subject and the scene.
+
+glmm_model1 <- glmer(correct_response ~ 1 + expected_side + (1 | subject_id) + (1 | scene_id),
+                    data = data, 
+                    family = binomial)
+
+# Printing the summary of the model
+model_summary1 = summary(glmm_model1)
+print(model_summary1)
+
+```
+
+```{r}
+anova(glmm_model1, glmm_model)
+```
+The anova test, indicates that the more detailed model is significantly different than the simpler model. Additionally, the log likelihood and AIC and BIC scores are lower (thus better). In addition the fact that the p-value for the model coefficient for when the expected_side is red is lower when the scene id is included, indicates that scene_id is indeed an important factor in the accuracy.
+
+# Conclusion
+All statistical tests have shown that when the majority team colour is red, subject are more likely to identify the majority team. 
