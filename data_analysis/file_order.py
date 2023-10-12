@@ -1,6 +1,7 @@
 import re
 import random
 
+named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_r(?P<red_count>\d+)_b(?P<blue_count>\d+)\..+$')
 
 def split_scenes_shuffle(file_list, random_seed):
     """
@@ -22,19 +23,18 @@ def split_scenes_shuffle(file_list, random_seed):
 
     Example:
     >>> file_list = [
-    ...     "id00_v1_r5_b6.png",
-    ...     "id00_v2_r6_b5.png",
-    ...     "id01_v1_r5_b6.png",
-    ...     "id01_v2_r6_b5.png",
-    ...     "id02_v1_r6_b5.png",
-    ...     "id02_v2_r5_b6.png"
+    ...     "id0_v1_r5_b6.png",
+    ...     "id0_v2_r6_b5.png",
+    ...     "id1_v1_r5_b6.png",
+    ...     "id1_v2_r6_b5.png",
+    ...     "id2_v1_r6_b5.png",
+    ...     "id2_v2_r5_b6.png"
     ... ]
     >>> experiment_order(file_list, 123)
-    ['id02_v2_r5_b6.png', 'id01_v1_r5_b6.png', 'id00_v2_r6_b5.png', 'id02_v1_r6_b5.png', 'id01_v2_r6_b5.png', 'id00_v1_r5_b6.png']
+    ['id2_v2_r5_b6.png', 'id1_v1_r5_b6.png', 'id0_v2_r6_b5.png', 'id2_v1_r6_b5.png', 'id1_v2_r6_b5.png', 'id0_v1_r5_b6.png']
     """    
 
     lookup = {}
-    named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_r(?P<red_count>\d+)_b(?P<blue_count>\d+)\.png$')
     for fn in file_list:
         md = {k:int(v) for k,v in re.match(named_pattern, fn).groupdict().items()}
         md['file_name'] = fn
@@ -157,7 +157,6 @@ def test_scene_ids_and_color_counts():
     reordered_list = split_scenes_shuffle(file_list, 123)
     
     # Extract scene_ids and color counts from file names
-    named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_r(?P<red_count>\d+)_b(?P<blue_count>\d+)\.png$')
     parsed_info = [{k: int(v) if k != 'scene_id' else v for k, v in re.match(named_pattern, fn).groupdict().items()} for fn in reordered_list]
     
     half_length = len(reordered_list) // 2

@@ -1,7 +1,10 @@
 import numpy as np
+import re
 import argparse
 
-def generate_file_list(n_scenes, seed):
+named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_r(?P<red_count>\d+)_b(?P<blue_count>\d+)\..+$')
+
+def generate_file_list(n_scenes, seed, file_extension='jpg'):
     """
     Generates a file list with specified total length and random seed, ensuring at least 
     5 elements between repeating IDs.
@@ -11,7 +14,7 @@ def generate_file_list(n_scenes, seed):
     - seed (int): Seed for random number generation.
     
     Returns:
-    - list: A list of file names in the format 'idNN_rX_bY.png'.
+    - list: A list of file names in the format 'idN_rX_bY.png'.
     """
     
     rng = np.random.default_rng(seed)
@@ -19,22 +22,21 @@ def generate_file_list(n_scenes, seed):
     rng.shuffle(x_values)  
     
     file_names = []
-    for nn, x in enumerate(x_values):
+    for n, x in enumerate(x_values):
         y = 6 if x == 5 else 5
-        file_name = f"id{nn:02d}_r{x}_b{y}.png"
+        file_name = f"id{n}_v1_r{x}_b{y}.{file_extension}"
         file_names.append(file_name)
     
     files = file_names.copy()
     rng.shuffle(files)
 
+
     def _opposite_sides(files):
         # return a new list where each element is a modified element from file such that id01_r6_b5.png turns into id01_r5_b6.png
         new_files = []
         for fn in files:
-            id_ = fn[2:4]
-            r = fn[6]
-            b = fn[9]
-            new_file = f"id{id_}_r{b}_b{r}.png"
+            pi = {k: int(v) if k != 'scene_id' else v for k, v in re.match(named_pattern, fn).groupdict().items()}
+            new_file = f"id{pi['scene_id']}_v2_r{pi['blue_count']}_b{pi['red_count']}.{file_extension}"
             new_files.append(new_file)
         return new_files
 
@@ -43,8 +45,8 @@ def generate_file_list(n_scenes, seed):
     MIN_SPACING = min(n_scenes // 2, 5)
     while l:
         sampled_file = rng.choice(l)
-        last_ids = [int(file[2:4]) for file in files[-MIN_SPACING:]]
-        sampled_id = int(sampled_file[2:4])
+        last_ids = [re.match(named_pattern, f).groupdict()['scene_id'] for f in files[-MIN_SPACING:]]
+        sampled_id = re.match(named_pattern, sampled_file).groupdict()['scene_id']
         
         if sampled_id not in last_ids:
             files.append(sampled_file)
@@ -69,7 +71,7 @@ def test_file_order(file_list):
     >>> test_file_order(['id00_r5_b6.png', 'id01_r5_b6.png', 'id00_r6_b5.png', 'id02_r5_b6.png', 'id00_r5_b6.png'])
     False
     """
-    ids = [int(file[2:4]) for file in file_list]
+    ids = [re.match(named_pattern, f).groupdict()['scene_id'] for f in file_list]
     last_positions = {}
     
     for i, id_ in enumerate(ids):
