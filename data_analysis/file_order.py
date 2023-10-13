@@ -25,27 +25,31 @@ def split_scenes_shuffle(file_list, random_seed):
 
     Example:
     >>> file_list = [
-    ...     "id0_v1_r5_b6.png",
-    ...     "id0_v2_r6_b5.png",
-    ...     "id1_v1_r5_b6.png",
-    ...     "id1_v2_r6_b5.png",
-    ...     "id2_v1_r6_b5.png",
-    ...     "id2_v2_r5_b6.png"
+    ...     "id0_v1_b5_r6.png",
+    ...     "id0_v2_b6_r5.png",
+    ...     "id1_v1_b5_r6.png",
+    ...     "id1_v2_b6_r5.png",
+    ...     "id2_v1_b6_r5.png",
+    ...     "id2_v2_b5_r6.png"
     ... ]
     >>> experiment_order(file_list, 123)
-    ['id2_v2_r5_b6.png', 'id1_v1_r5_b6.png', 'id0_v2_r6_b5.png', 'id2_v1_r6_b5.png', 'id1_v2_r6_b5.png', 'id0_v1_r5_b6.png']
+    ['id2_v2_b5_r6.png', 'id1_v1_b5_r6.png', 'id0_v2_b6_r5.png', 'id2_v1_b6_r5.png', 'id1_v2_b6_r5.png', 'id0_v1_b5_r6.png']
     """    
 
     lookup = {}
+    scenes = set()
     for fn in file_list:
         md = {k:int(v) for k,v in re.match(named_pattern, fn).groupdict().items()}
         md['file_name'] = fn
+        scene_id = int(md['scene_id'])
+        scenes.add(scene_id)
         expected_side = 'red' if md['red_count'] > md['blue_count'] else 'blue' if md['blue_count'] > md['red_count'] else 'none'
-        side_per_scene = lookup.setdefault(md['scene_id'], {})
+        side_per_scene = lookup.setdefault(scene_id, {})
         side_per_scene[expected_side] = md
 
-    n_scenes = len(lookup)
-    first_half_scenes = [_ for _ in range(n_scenes)]
+    scenes = sorted(list(scenes))
+    n_scenes = len(scenes)    
+    first_half_scenes = scenes
     first_half_sides = ['blue'] * n_scenes
     for i in range(n_scenes // 2):
         first_half_sides[i] = 'red'
@@ -96,7 +100,7 @@ import pytest
 
 def test_valid_formats():
     # Ensure the function can parse valid formats
-    valid_file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png"]
+    valid_file_list = ["id00_v1_b6_r5.png", "id00_v2_b5_r6.png"]
     assert split_scenes_shuffle(valid_file_list, 123) is not None
 
 def test_invalid_formats():
@@ -107,7 +111,7 @@ def test_invalid_formats():
 
 def test_balanced_distribution():
     # Ensure red and blue are distributed evenly
-    file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png", "id01_v1_r5_b6.png", "id01_v2_r6_b5.png"]
+    file_list = ["id00_v1_b5_r6.png", "id00_v2_b6_r5.png", "id01_v1_b5_r6.png", "id01_v2_b6_r5.png"]
     reordered_list = split_scenes_shuffle(file_list, 123)
     red_count = sum(1 for name in reordered_list if "_r" in name)
     blue_count = sum(1 for name in reordered_list if "_b" in name)
@@ -115,18 +119,18 @@ def test_balanced_distribution():
 
 def test_deterministic_output():
     # Ensure the function produces consistent output for the same seed
-    file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png"]
+    file_list = ["id00_v1_b5_r6.png", "id00_v2_b6_r5.png"]
     assert split_scenes_shuffle(file_list, 123) == split_scenes_shuffle(file_list, 123)
 
 def test_correct_file_names():
     # Ensure the function returns the correct file names
-    file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png"]
+    file_list = ["id1_v1_b5_r6.png", "id1_v2_b6_r5.png"]
     reordered_list = split_scenes_shuffle(file_list, 123)
-    assert set(reordered_list) == set(file_list)
+    assert set(reordered_list) == set(file_list), (file_list, reordered_list)
 
 def test_different_seeds():
     # Ensure the function returns the correct file names
-    file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png", "id01_v1_r5_b6.png", "id01_v2_r6_b5.png"]
+    file_list = ["id00_v1_b5_r6.png", "id00_v2_b6_r5.png", "id01_v1_b5_r6.png", "id01_v2_b6_r5.png"]
     reordered_list_1 = split_scenes_shuffle(file_list, 123)
     reordered_list_2 = split_scenes_shuffle(file_list, 321)
     assert set(reordered_list_1) == set(reordered_list_2)
@@ -134,14 +138,14 @@ def test_different_seeds():
 
 def test_all_red_or_blue_scenes():
     # Ensure the function can handle all red or all blue scenes
-    all_red_file_list = ["id00_v1_r5_b0.png", "id00_v2_r6_b0.png"]
-    all_blue_file_list = ["id00_v1_r0_b5.png", "id00_v2_r0_b6.png"]
+    all_red_file_list = ["id00_v1_b5_r0.png", "id00_v2_b6_r0.png"]
+    all_blue_file_list = ["id00_v1_b0_r5.png", "id00_v2_b0_r6.png"]
     assert split_scenes_shuffle(all_red_file_list, 123) is not None
     assert split_scenes_shuffle(all_blue_file_list, 123) is not None
 
 def test_immutable_input():
     # Ensure the function does not modify the input
-    file_list = ["id00_v1_r5_b6.png", "id00_v2_r6_b5.png"]
+    file_list = ["id00_v1_b5_r6.png", "id00_v2_b6_r5.png"]
     original_file_list = file_list.copy()
     _ = split_scenes_shuffle(file_list, 123)
     assert file_list == original_file_list
@@ -149,12 +153,12 @@ def test_immutable_input():
 def test_scene_ids_and_color_counts():
     # Ensure scene_ids in the first and second halves are the same and color counts are swapped
     file_list = [
-        "id00_v1_r5_b6.png",
-        "id00_v2_r6_b5.png",
-        "id01_v1_r5_b6.png",
-        "id01_v2_r6_b5.png",
-        "id02_v1_r7_b6.png",
-        "id02_v2_r6_b7.png"
+        "id00_v1_b5_r6.png",
+        "id00_v2_b6_r5.png",
+        "id01_v1_b5_r6.png",
+        "id01_v2_b6_r5.png",
+        "id02_v1_b7_r6.png",
+        "id02_v2_b6_r7.png"
     ]
     reordered_list = split_scenes_shuffle(file_list, 123)
     
@@ -197,14 +201,14 @@ def main():
 
 
 if __name__ == '__main__':
-    # test_valid_formats()
-    # test_invalid_formats()
-    # test_balanced_distribution()
-    # test_deterministic_output()
-    # test_correct_file_names()
-    # test_different_seeds()
-    # test_immutable_input()
-    # test_scene_ids_and_color_counts()
+    test_valid_formats()
+    test_invalid_formats()
+    test_balanced_distribution()
+    test_deterministic_output()
+    test_correct_file_names()
+    test_different_seeds()
+    test_immutable_input()
+    test_scene_ids_and_color_counts()
 
     # "Tests passed!"  # If no assertion errors, we consider tests passed.
     main()
