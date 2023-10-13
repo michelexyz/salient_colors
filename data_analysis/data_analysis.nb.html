@@ -1765,17 +1765,17 @@ whether the team color influences the accuracy of responses.</p>
 <h1>Data loading</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIHRoZSBkYXRhXG5kYXRhIDwtIHJlYWQuY3N2KFwiLi4vc3ludGhldGljX2VucmljaGVkX2d0LmNzdlwiKVxuXG4jIFBlZWsgaW50byB0aGUgZGF0YVxuaGVhZChkYXRhKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBMb2FkIHRoZSBkYXRhXG5kYXRhIDwtIHJlYWQuY3N2KFwic3ludGhldGljX2VucmljaGVkX2d0LmNzdlwiKVxuXG4jIFBlZWsgaW50byB0aGUgZGF0YVxuaGVhZChkYXRhKVxuYGBgIn0= -->
 <pre class="r"><code># Load the data
-data &lt;- read.csv(&quot;../synthetic_enriched_gt.csv&quot;)
+data &lt;- read.csv(&quot;synthetic_enriched_gt.csv&quot;)
 
 # Peek into the data
 head(data)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTIsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQmd0eWlURG1pdUJpWUdCZ1ptQmhabVJnWmdVeUdWaERROXgwTFJnWVdKaUFIRVlHRmdaT0VGMEJWQ1FNWlBBQU1TOFFzekVnQUNNVU0wR3hBRmdlb3BFdk04WFFPTDdJTkQ3SlRLOGdMeDFWMUN3K3laUllVZXdtRURBWEtBSnlpMFBmb2VkZVZrc1dPdlQzUG9sL0pzRHIwSzk0bzhaUWRLSERETEZscmhQWC9YYVkzSHVhNVVWcHNNTUVxWVZYTHQzdFJ2TURZeTRSakRRRUF4RkNpbEFzRGNYS1VJd3JCR0VBN0dyN2wwVlRBdFZidXV4ZjJVeU5NUHNyWi8rU2ZVZjI1QjhQN0o5cXpSRk9QT05vL3p4OGE5MlJsbEQ3VngzaW9zMlNPbWl1WmtuS0tVMkZzcG1MVWxQd01qRVVJOXpJaXdlRDVGbWhOSXpOaXFRUG16aU1UNXBia1ZWZ09oWWxyYkxtSmVhbUZrTnQ0SUVLY2hXWEptV2xKcGZFWjhKTTVFakx6RWtGS1lYeWVZdFNpd3Z5ODRwVDQwc3k0WUpzNmFsNUthbEZNTXNTMDJFU2ZObDUrZVhGOFduNStTVkppVGs1VUZITzRzemMrSUxpMHVSa0RFT0xNMU5nZWptS2sxUHpVaEV1WWMyTFIzaVVMUzhleVh1OHFSVUZRRmVucGtEMG8zcVVzeWkvWEEvbVdWQndNelZBa2c4YmVvZ2s1eVFXdzBJRUpzaVZrbGlTcUpkV0JBb0JCb1ovYUZyWTh3dEtNb0VPQnhvcURJMDBMcVNFaW13UVl4R2FBSDlwSHNoVktickpHYVY1MmJxR2FIcDVvVFFiRXBzSFlqM1RmL1NFa1pxY2tROExtZFM4OU13OFdNaXc1aVFtcGNMQ25ROFlFdUNBMENzb3lzd3JnZmtRS0Zxc1Y1SmZrZ2hUeDVXY253TVRBZnVaNFI4QUZKd2Qvd1VGQUFBPSJ9 -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTYsInN1bW1hcnkiOltdfSwicmRmIjoiSDRzSUFBQUFBQUFBQnFWVXpXc1RRUlNmeldlek5XMms2RUc5RkU4S0NTU2wxWXZzRm14dWZpQVdxaDdXeldhU1ROeWRYV1puMDk0cW9pZ3RnbEs4Q1I2cS80YmVGTHdKZWxCUVBQZ0I3VUVGUlJTc3pzYVo3RWZTMnVMQ2ozbnZOL04rOCtiTm16MXpmRzVDbnBNQkFFbVFTa29nbVdZbVNNK2VyUmFQQXBCS01FY0NLWkR6eHdXMmFJd1pCWVk4UXdZRW44U1I0QWpQSDJJNHdIQ01ZWnpoQk5mSWNPSGRxRjZlMERwbGpVeHF0YWxTMjJsR0p5b2FtZEpxay8wVDVjMG1LcHRKYld1UGFIYVMxV2MwK296UW11RHM0eHo3T1E1eWhOVlRsazNnRG16WjFGMWF0R3hNV3dPWW1IYk45T0FBTzRzaG9pMUlCcnY5VVZIVnJhTjNyajNpYXl0djc3Nzh1cmJ5VFBsNGNlYnFTWFZWZWJmbjIySmwrTFh5L3VGTSsvNnVmY3FIeitETEhhdXFyRDllL0pXZEhvM2xsSzdxcGd2LzMrSFpxTXR2SHYwWVhsbFhiN3lZZjNWdm1xZzNuMHZYbGcvL1ZHL1BQamgvK3NLYXVuUnI3NmZTNmhOMTZmcVZwNmUrbjR0bGt5U3d2bDB6WEpFdUhiUlBmZ3Y0ODJrK0Nqc2RpaHZFQzMrekZ2bDNndjNKUm40UWFheGIwT1U3RkVSN3VsNnREUTJxSWFFNFJBblNUUTNid204Z0UvcWgzTTgwSWE3M1dpYXBOM3U5RHhjY1NCREVobUR5RGIxakUwU2hScUV1M3VCSWp6UnMweFk2T1JkWm11TjZoc0dKVVdRNU9tS24wRHJJUlRZV2tnUzZqbzFkSm9sNktRV2tpK3FDSEhJTmlHRndycHl2WmRnZXBpSmZ2MXdSSnUrZndLQnNYVmNuV3I0Y3NlZExvb1QrSlNZdWcrNlhpZGZaWUU5ZTFGbVFjbDJuZXFsQi9Eb0NzQkVMeWRvT1pXZGtRWWt4M2dveUNQN2FZU0dKeElpQ2gvMnM2a1dqNWVGTHhmS1JXSENlajVtUVhmaTdmK0ozdk4rZzBSTDNub0c0aVhEdkJacDZEWnJpQ2xrcHVwVW9PUVFGOVdTc1c2STIxY1U2bWQyd1lMcUhCaHQvQUozNHQ2WFJCZ0FBIn0= -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["subject_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["filename"],"name":[2],"type":["chr"],"align":["left"]},{"label":["response_time"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["gender"],"name":[4],"type":["chr"],"align":["left"]},{"label":["age"],"name":[5],"type":["int"],"align":["right"]},{"label":["knows_football"],"name":[6],"type":["int"],"align":["right"]},{"label":["sim_psucc"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["response_side"],"name":[8],"type":["chr"],"align":["left"]},{"label":["scene_id"],"name":[9],"type":["int"],"align":["right"]},{"label":["n_red"],"name":[10],"type":["int"],"align":["right"]},{"label":["n_blue"],"name":[11],"type":["int"],"align":["right"]},{"label":["expected_side"],"name":[12],"type":["chr"],"align":["left"]}],"data":[{"1":"0","2":"id13_r5_b6.png","3":"984","4":"m","5":"33","6":"0","7":"0.795","8":"blue","9":"13","10":"5","11":"6","12":"blue","_rn_":"1"},{"1":"0","2":"id13_r6_b5.png","3":"1010","4":"m","5":"33","6":"0","7":"0.820","8":"red","9":"13","10":"6","11":"5","12":"red","_rn_":"2"},{"1":"1","2":"id13_r6_b5.png","3":"996","4":"m","5":"27","6":"1","7":"0.782","8":"red","9":"13","10":"6","11":"5","12":"red","_rn_":"3"},{"1":"1","2":"id13_r5_b6.png","3":"1542","4":"m","5":"27","6":"1","7":"0.661","8":"red","9":"13","10":"5","11":"6","12":"blue","_rn_":"4"},{"1":"2","2":"id13_r5_b6.png","3":"1251","4":"f","5":"35","6":"0","7":"0.729","8":"blue","9":"13","10":"5","11":"6","12":"blue","_rn_":"5"},{"1":"2","2":"id13_r6_b5.png","3":"1031","4":"f","5":"35","6":"0","7":"0.829","8":"red","9":"13","10":"6","11":"5","12":"red","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[12]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["subject_id"],"name":[1],"type":["int"],"align":["right"]},{"label":["trial_no"],"name":[2],"type":["int"],"align":["right"]},{"label":["filename"],"name":[3],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[4],"type":["chr"],"align":["left"]},{"label":["age"],"name":[5],"type":["int"],"align":["right"]},{"label":["experience"],"name":[6],"type":["chr"],"align":["left"]},{"label":["favorite_team"],"name":[7],"type":["chr"],"align":["left"]},{"label":["favorite_color"],"name":[8],"type":["chr"],"align":["left"]},{"label":["sim_psucc"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["impaired_vision"],"name":[10],"type":["chr"],"align":["left"]},{"label":["response_time"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["response_side"],"name":[12],"type":["chr"],"align":["left"]},{"label":["scene_id"],"name":[13],"type":["int"],"align":["right"]},{"label":["red_count"],"name":[14],"type":["int"],"align":["right"]},{"label":["blue_count"],"name":[15],"type":["int"],"align":["right"]},{"label":["expected_side"],"name":[16],"type":["chr"],"align":["left"]}],"data":[{"1":"0","2":"0","3":"id13_v1_r5_b6.jpg","4":"m","5":"33","6":"more","7":"blue","8":"neither","9":"0.519","10":"False","11":"892","12":"red","13":"13","14":"5","15":"6","16":"blue","_rn_":"1"},{"1":"0","2":"41","3":"id13_v2_r6_b5.jpg","4":"m","5":"33","6":"more","7":"blue","8":"neither","9":"0.731","10":"False","11":"795","12":"red","13":"13","14":"6","15":"5","16":"red","_rn_":"2"},{"1":"1","2":"28","3":"id13_v1_r6_b5.jpg","4":"f","5":"27","6":"more","7":"neither","8":"neither","9":"0.628","10":"False","11":"955","12":"red","13":"13","14":"6","15":"5","16":"red","_rn_":"3"},{"1":"1","2":"61","3":"id13_v2_r5_b6.jpg","4":"f","5":"27","6":"more","7":"neither","8":"neither","9":"0.679","10":"False","11":"1109","12":"red","13":"13","14":"5","15":"6","16":"blue","_rn_":"4"},{"1":"2","2":"33","3":"id13_v1_r5_b6.jpg","4":"m","5":"35","6":"last-month","7":"blue","8":"blue","9":"0.717","10":"False","11":"850","12":"blue","13":"13","14":"5","15":"6","16":"blue","_rn_":"5"},{"1":"2","2":"77","3":"id13_v2_r6_b5.jpg","4":"m","5":"35","6":"last-month","7":"blue","8":"blue","9":"0.868","10":"False","11":"849","12":"red","13":"13","14":"6","15":"5","16":"red","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[16]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
@@ -1786,7 +1786,7 @@ head(data)</code></pre>
 <h1>Data Preprocessing</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGluZyBhIGJpbmFyeSBhY2N1cmFjeSB2YXJpYWJsZVxuZGF0YSRjb3JyZWN0X3Jlc3BvbnNlIDwtIGlmZWxzZShkYXRhJGV4cGVjdGVkX3NpZGUgPT0gZGF0YSRyZXNwb25zZV9zaWRlLCAxLCAwKVxuXG4jIEVuY29kaW5nICdleHBlY3RlZF9zaWRlJyBhcyBhIGZhY3RvciB2YXJpYWJsZVxuZGF0YSRleHBlY3RlZF9zaWRlIDwtIGFzLmZhY3RvcihkYXRhJGV4cGVjdGVkX3NpZGUpXG5kYXRhJHJlc3BvbnNlX3NpZGUgPC0gYXMuZmFjdG9yKGRhdGEkcmVzcG9uc2Vfc2lkZSlcbmRhdGEkZ2VuZGVyIDwtIGFzLmZhY3RvcihkYXRhJGdlbmRlcilcbmRhdGEka25vd3NfZm9vdGJhbGwgPC0gYXMuZmFjdG9yKGRhdGEka25vd3NfZm9vdGJhbGwpXG5kYXRhJHNjZW5lX2lkIDwtIGFzLmZhY3RvcihkYXRhJHNjZW5lX2lkKVxuZGF0YSRzdWJqZWN0X2lkIDwtIGFzLmZhY3RvcihkYXRhJHN1YmplY3RfaWQpXG5cbiMgU3VtbWFyeSBvZiBwcmVwcm9jZXNzaW5nXG5zdW1tYXJ5KGRhdGEkY29ycmVjdF9yZXNwb25zZSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGluZyBhIGJpbmFyeSBhY2N1cmFjeSB2YXJpYWJsZVxuZGF0YSRjb3JyZWN0X3Jlc3BvbnNlIDwtIGlmZWxzZShkYXRhJGV4cGVjdGVkX3NpZGUgPT0gZGF0YSRyZXNwb25zZV9zaWRlLCAxLCAwKVxuXG4jIEVuY29kaW5nICdleHBlY3RlZF9zaWRlJyBhcyBhIGZhY3RvciB2YXJpYWJsZVxuZGF0YSRleHBlY3RlZF9zaWRlIDwtIGFzLmZhY3RvcihkYXRhJGV4cGVjdGVkX3NpZGUpXG5kYXRhJHJlc3BvbnNlX3NpZGUgPC0gYXMuZmFjdG9yKGRhdGEkcmVzcG9uc2Vfc2lkZSlcbmRhdGEkZ2VuZGVyIDwtIGFzLmZhY3RvcihkYXRhJGdlbmRlcilcbmRhdGEkZXhwZXJpZW5jZSA8LSBhcy5mYWN0b3IoZGF0YSRleHBlcmllbmNlKVxuZGF0YSRzY2VuZV9pZCA8LSBhcy5mYWN0b3IoZGF0YSRzY2VuZV9pZClcbmRhdGEkc3ViamVjdF9pZCA8LSBhcy5mYWN0b3IoZGF0YSRzdWJqZWN0X2lkKVxuXG4jIFN1bW1hcnkgb2YgcHJlcHJvY2Vzc2luZ1xuc3VtbWFyeShkYXRhJGNvcnJlY3RfcmVzcG9uc2UpXG5gYGAifQ== -->
 <pre class="r"><code># Creating a binary accuracy variable
 data$correct_response &lt;- ifelse(data$expected_side == data$response_side, 1, 0)
 
@@ -1794,16 +1794,16 @@ data$correct_response &lt;- ifelse(data$expected_side == data$response_side, 1, 
 data$expected_side &lt;- as.factor(data$expected_side)
 data$response_side &lt;- as.factor(data$response_side)
 data$gender &lt;- as.factor(data$gender)
-data$knows_football &lt;- as.factor(data$knows_football)
+data$experience &lt;- as.factor(data$experience)
 data$scene_id &lt;- as.factor(data$scene_id)
 data$subject_id &lt;- as.factor(data$subject_id)
 
 # Summary of preprocessing
 summary(data$correct_response)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgTWluLiAxc3QgUXUuICBNZWRpYW4gICAgTWVhbiAzcmQgUXUuICAgIE1heC4gXG4gIDAuMDAwICAgMC4wMDAgICAxLjAwMCAgIDAuNjY2ICAgMS4wMDAgICAxLjAwMCBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgTWluLiAxc3QgUXUuICBNZWRpYW4gICAgTWVhbiAzcmQgUXUuICAgIE1heC4gXG4gIDAuMDAwICAgMC4wMDAgICAxLjAwMCAgIDAuNzI2ICAgMS4wMDAgICAxLjAwMCBcbiJ9 -->
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.000   0.000   1.000   0.666   1.000   1.000 </code></pre>
+  0.000   0.000   1.000   0.726   1.000   1.000 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGUoZGF0YSRleHBlY3RlZF9zaWRlKVxuYGBgIn0= -->
 <pre class="r"><code>table(data$expected_side)</code></pre>
@@ -1832,11 +1832,11 @@ test will be significant (&lt; <span class="math inline">\(\alpha=0.05\)</span>)
 contingency_table &lt;- table(data$expected_side, data$correct_response)
 print(contingency_table)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgXG4gICAgICAgICAgMCAgICAxXG4gIGJsdWUgIDczMiAxMjY4XG4gIHJlZCAgIDYwNCAxMzk2XG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgXG4gICAgICAgICAgMCAgICAxXG4gIGJsdWUgIDU3MiAxNDI4XG4gIHJlZCAgIDUyMyAxNDc3XG4ifQ== -->
 <pre><code>      
           0    1
-  blue  732 1268
-  red   604 1396</code></pre>
+  blue  572 1428
+  red   523 1477</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQZXJmb3JtaW5nIHRoZSBjaGktc3F1YXJlIHRlc3RcbmNoaTJfdGVzdCA8LSBjaGlzcS50ZXN0KGNvbnRpbmdlbmN5X3RhYmxlKVxuXG4jIFByaW50aW5nIHRoZSByZXN1bHRzXG5wcmludChjaGkyX3Rlc3QpXG5gYGAifQ== -->
 <pre class="r"><code># Performing the chi-square test
@@ -1845,12 +1845,12 @@ chi2_test &lt;- chisq.test(contingency_table)
 # Printing the results
 print(chi2_test)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFBlYXJzb24ncyBDaGktc3F1YXJlZCB0ZXN0IHdpdGggWWF0ZXMnIGNvbnRpbnVpdHkgY29ycmVjdGlvblxuXG5kYXRhOiAgY29udGluZ2VuY3lfdGFibGVcblgtc3F1YXJlZCA9IDE4LCBkZiA9IDEsIHAtdmFsdWUgPSAyZS0wNVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFBlYXJzb24ncyBDaGktc3F1YXJlZCB0ZXN0IHdpdGggWWF0ZXMnIGNvbnRpbnVpdHkgY29ycmVjdGlvblxuXG5kYXRhOiAgY29udGluZ2VuY3lfdGFibGVcblgtc3F1YXJlZCA9IDMsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDlcbiJ9 -->
 <pre><code>
     Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
 
 data:  contingency_table
-X-squared = 18, df = 1, p-value = 2e-05</code></pre>
+X-squared = 3, df = 1, p-value = 0.09</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1868,27 +1868,27 @@ and the same image is tested for both conditions of interest
 <pre class="r"><code>rct = contingency_table[c(2, 1), c(2, 1)]
 print(rct)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgXG4gICAgICAgICAgMSAgICAwXG4gIHJlZCAgMTM5NiAgNjA0XG4gIGJsdWUgMTI2OCAgNzMyXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgXG4gICAgICAgICAgMSAgICAwXG4gIHJlZCAgMTQ3NyAgNTIzXG4gIGJsdWUgMTQyOCAgNTcyXG4ifQ== -->
 <pre><code>      
           1    0
-  red  1396  604
-  blue 1268  732</code></pre>
+  red  1477  523
+  blue 1428  572</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvcC50ZXN0KHJjdCwgY29ycmVjdD1UUlVFKVxuYGBgIn0= -->
 <pre class="r"><code>prop.test(rct, correct=TRUE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGggY29udGludWl0eSBjb3JyZWN0aW9uXG5cbmRhdGE6ICByY3Rcblgtc3F1YXJlZCA9IDE4LCBkZiA9IDEsIHAtdmFsdWUgPSAyZS0wNVxuYWx0ZXJuYXRpdmUgaHlwb3RoZXNpczogdHdvLnNpZGVkXG45NSBwZXJjZW50IGNvbmZpZGVuY2UgaW50ZXJ2YWw6XG4gMC4wMzQzIDAuMDkzN1xuc2FtcGxlIGVzdGltYXRlczpcbnByb3AgMSBwcm9wIDIgXG4gMC42OTggIDAuNjM0IFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdDItc2FtcGxlIHRlc3QgZm9yIGVxdWFsaXR5IG9mIHByb3BvcnRpb25zIHdpdGggY29udGludWl0eSBjb3JyZWN0aW9uXG5cbmRhdGE6ICByY3Rcblgtc3F1YXJlZCA9IDMsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDlcbmFsdGVybmF0aXZlIGh5cG90aGVzaXM6IHR3by5zaWRlZFxuOTUgcGVyY2VudCBjb25maWRlbmNlIGludGVydmFsOlxuIC0wLjAwMzYzICAwLjA1MjYzXG5zYW1wbGUgZXN0aW1hdGVzOlxucHJvcCAxIHByb3AgMiBcbiAwLjczOSAgMC43MTQgXG4ifQ== -->
 <pre><code>
     2-sample test for equality of proportions with continuity correction
 
 data:  rct
-X-squared = 18, df = 1, p-value = 2e-05
+X-squared = 3, df = 1, p-value = 0.09
 alternative hypothesis: two.sided
 95 percent confidence interval:
- 0.0343 0.0937
+ -0.00363  0.05263
 sample estimates:
 prop 1 prop 2 
- 0.698  0.634 </code></pre>
+ 0.739  0.714 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1918,12 +1918,12 @@ mcnemar_test_result &lt;- mcnemar.test(wide_data$correct_response_red, wide_data
 # Display the result
 print(mcnemar_test_result)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1jTmVtYXIncyBDaGktc3F1YXJlZCB0ZXN0IHdpdGggY29udGludWl0eSBjb3JyZWN0aW9uXG5cbmRhdGE6ICB3aWRlX2RhdGEkY29ycmVjdF9yZXNwb25zZV9yZWQgYW5kIHdpZGVfZGF0YSRjb3JyZWN0X3Jlc3BvbnNlX2JsdWVcbk1jTmVtYXIncyBjaGktc3F1YXJlZCA9IDE4LCBkZiA9IDEsIHAtdmFsdWUgPSAyZS0wNVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdE1jTmVtYXIncyBDaGktc3F1YXJlZCB0ZXN0IHdpdGggY29udGludWl0eSBjb3JyZWN0aW9uXG5cbmRhdGE6ICB3aWRlX2RhdGEkY29ycmVjdF9yZXNwb25zZV9yZWQgYW5kIHdpZGVfZGF0YSRjb3JyZWN0X3Jlc3BvbnNlX2JsdWVcbk1jTmVtYXIncyBjaGktc3F1YXJlZCA9IDMsIGRmID0gMSwgcC12YWx1ZSA9IDAuMDhcbiJ9 -->
 <pre><code>
     McNemar&#39;s Chi-squared test with continuity correction
 
 data:  wide_data$correct_response_red and wide_data$correct_response_blue
-McNemar&#39;s chi-squared = 18, df = 1, p-value = 2e-05</code></pre>
+McNemar&#39;s chi-squared = 3, df = 1, p-value = 0.08</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1939,17 +1939,17 @@ majority team colour is blue.</p>
 <pre class="r"><code>or = OddsRatio(rct, method=&quot;midp&quot;, conf.level=0.95)
 print(or)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoib2RkcyByYXRpbyAgICAgbHdyLmNpICAgICB1cHIuY2kgXG4gICAgICAxLjMzICAgICAgIDEuMTcgICAgICAgMS41MiBcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoib2RkcyByYXRpbyAgICAgbHdyLmNpICAgICB1cHIuY2kgXG4gICAgIDEuMTMxICAgICAgMC45ODQgICAgICAxLjMwMCBcbiJ9 -->
 <pre><code>odds ratio     lwr.ci     upr.ci 
-      1.33       1.17       1.52 </code></pre>
+     1.131      0.984      1.300 </code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The calculated OR value of 1.334 means that odds increase by 0.334%
+<p>The calculated OR value of 1.131 means that odds increase by 0.131%
 when the majority team color is red. The 95% confidence interval for the
-OR is 1.334, 1.169, and because it doesn’t include the value of 1 it
-means that the effect is significant, as previously verified by the
-McMnemar test.</p>
+OR is 1.131, 0.984, and if it doesn’t include the value of 1 it means
+that the effect is significant and should coincide with the McMnemar
+test.</p>
 </div>
 </div>
 <div id="logistic-regression" class="section level1">
@@ -1959,7 +1959,7 @@ McMnemar test.</p>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShnbG0oY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUsIGRhdGEgPSBkYXRhLCBmYW1pbHkgPSBiaW5vbWlhbCkpXG5gYGAifQ== -->
 <pre class="r"><code>summary(glm(correct_response ~ expected_side, data = data, family = binomial))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSwgZmFtaWx5ID0gYmlub21pYWwsIFxuICAgIGRhdGEgPSBkYXRhKVxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAwLjU0OTQgICAgIDAuMDQ2NCAgIDExLjg0ICA8IDJlLTE2ICoqKlxuZXhwZWN0ZWRfc2lkZXJlZCAgIDAuMjg4NCAgICAgMC4wNjczICAgIDQuMjkgIDEuOGUtMDUgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBiaW5vbWlhbCBmYW1pbHkgdGFrZW4gdG8gYmUgMSlcblxuICAgIE51bGwgZGV2aWFuY2U6IDUwOTUuOCAgb24gMzk5OSAgZGVncmVlcyBvZiBmcmVlZG9tXG5SZXNpZHVhbCBkZXZpYW5jZTogNTA3Ny40ICBvbiAzOTk4ICBkZWdyZWVzIG9mIGZyZWVkb21cbkFJQzogNTA4MVxuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNFxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSwgZmFtaWx5ID0gYmlub21pYWwsIFxuICAgIGRhdGEgPSBkYXRhKVxuXG5Db2VmZmljaWVudHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAwLjkxNDkgICAgIDAuMDQ5NSAgIDE4LjQ5ICAgPDJlLTE2ICoqKlxuZXhwZWN0ZWRfc2lkZXJlZCAgIDAuMTIzMyAgICAgMC4wNzEwICAgIDEuNzQgICAgMC4wODIgLiAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuKERpc3BlcnNpb24gcGFyYW1ldGVyIGZvciBiaW5vbWlhbCBmYW1pbHkgdGFrZW4gdG8gYmUgMSlcblxuICAgIE51bGwgZGV2aWFuY2U6IDQ2OTUuNiAgb24gMzk5OSAgZGVncmVlcyBvZiBmcmVlZG9tXG5SZXNpZHVhbCBkZXZpYW5jZTogNDY5Mi42ICBvbiAzOTk4ICBkZWdyZWVzIG9mIGZyZWVkb21cbkFJQzogNDY5N1xuXG5OdW1iZXIgb2YgRmlzaGVyIFNjb3JpbmcgaXRlcmF0aW9uczogNFxuIn0= -->
 <pre><code>
 Call:
 glm(formula = correct_response ~ expected_side, family = binomial, 
@@ -1967,16 +1967,16 @@ glm(formula = correct_response ~ expected_side, family = binomial,
 
 Coefficients:
                  Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)        0.5494     0.0464   11.84  &lt; 2e-16 ***
-expected_sidered   0.2884     0.0673    4.29  1.8e-05 ***
+(Intercept)        0.9149     0.0495   18.49   &lt;2e-16 ***
+expected_sidered   0.1233     0.0710    1.74    0.082 .  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 5095.8  on 3999  degrees of freedom
-Residual deviance: 5077.4  on 3998  degrees of freedom
-AIC: 5081
+    Null deviance: 4695.6  on 3999  degrees of freedom
+Residual deviance: 4692.6  on 3998  degrees of freedom
+AIC: 4697
 
 Number of Fisher Scoring iterations: 4</code></pre>
 <!-- rnb-output-end -->
@@ -1987,23 +1987,23 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShnbG0oY29ycmVjdF9yZXNwb25zZSB+IGdlbmRlciwgZGF0YSA9IGRhdGEsIGZhbWlseSA9IGJpbm9taWFsKSlcbmBgYCJ9 -->
 <pre class="r"><code>summary(glm(correct_response ~ gender, data = data, family = binomial))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gZ2VuZGVyLCBmYW1pbHkgPSBiaW5vbWlhbCwgZGF0YSA9IGRhdGEpXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgMC43MDU3ICAgICAwLjA3OTIgICAgOC45MSAgIDwyZS0xNiAqKipcbmdlbmRlcm0gICAgICAtMC4wMTg5ICAgICAwLjA4NzQgICAtMC4yMiAgICAgMC44MyAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIGJpbm9taWFsIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogNTA5NS44ICBvbiAzOTk5ICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiA1MDk1LjggIG9uIDM5OTggIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiA1MTAwXG5cbk51bWJlciBvZiBGaXNoZXIgU2NvcmluZyBpdGVyYXRpb25zOiA0XG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gZ2VuZGVyLCBmYW1pbHkgPSBiaW5vbWlhbCwgZGF0YSA9IGRhdGEpXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgMC45NTY5ICAgICAwLjA2NDUgICAxNC44NCAgIDwyZS0xNiAqKipcbmdlbmRlcm0gICAgICAgMC4wMjY5ICAgICAwLjA3NzIgICAgMC4zNSAgICAgMC43MyAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIGJpbm9taWFsIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogNDY5NS42ICBvbiAzOTk5ICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiA0Njk1LjUgIG9uIDM5OTggIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiA0NzAwXG5cbk51bWJlciBvZiBGaXNoZXIgU2NvcmluZyBpdGVyYXRpb25zOiA0XG4ifQ== -->
 <pre><code>
 Call:
 glm(formula = correct_response ~ gender, family = binomial, data = data)
 
 Coefficients:
             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)   0.7057     0.0792    8.91   &lt;2e-16 ***
-genderm      -0.0189     0.0874   -0.22     0.83    
+(Intercept)   0.9569     0.0645   14.84   &lt;2e-16 ***
+genderm       0.0269     0.0772    0.35     0.73    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 5095.8  on 3999  degrees of freedom
-Residual deviance: 5095.8  on 3998  degrees of freedom
-AIC: 5100
+    Null deviance: 4695.6  on 3999  degrees of freedom
+Residual deviance: 4695.5  on 3998  degrees of freedom
+AIC: 4700
 
 Number of Fisher Scoring iterations: 4</code></pre>
 <!-- rnb-output-end -->
@@ -2014,23 +2014,23 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShnbG0oY29ycmVjdF9yZXNwb25zZSB+IGFnZSwgZGF0YSA9IGRhdGEsIGZhbWlseSA9IGJpbm9taWFsKSlcbmBgYCJ9 -->
 <pre class="r"><code>summary(glm(correct_response ~ age, data = data, family = binomial))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gYWdlLCBmYW1pbHkgPSBiaW5vbWlhbCwgZGF0YSA9IGRhdGEpXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgIFxuKEludGVyY2VwdCkgIDAuNTY0NjYgICAgMC4xOTgwOSAgICAyLjg1ICAgMC4wMDQ0ICoqXG5hZ2UgICAgICAgICAgMC4wMDQzMiAgICAwLjAwNjcyICAgIDAuNjQgICAwLjUyMDYgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIGJpbm9taWFsIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogNTA5NS44ICBvbiAzOTk5ICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiA1MDk1LjQgIG9uIDM5OTggIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiA1MDk5XG5cbk51bWJlciBvZiBGaXNoZXIgU2NvcmluZyBpdGVyYXRpb25zOiA0XG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuZ2xtKGZvcm11bGEgPSBjb3JyZWN0X3Jlc3BvbnNlIH4gYWdlLCBmYW1pbHkgPSBiaW5vbWlhbCwgZGF0YSA9IGRhdGEpXG5cbkNvZWZmaWNpZW50czpcbiAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAxLjEzNTUxICAgIDAuMjEwNDkgICAgNS4zOSAgNi45ZS0wOCAqKipcbmFnZSAgICAgICAgIC0wLjAwNTQ5ICAgIDAuMDA3MTEgICAtMC43NyAgICAgMC40NCAgICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG4oRGlzcGVyc2lvbiBwYXJhbWV0ZXIgZm9yIGJpbm9taWFsIGZhbWlseSB0YWtlbiB0byBiZSAxKVxuXG4gICAgTnVsbCBkZXZpYW5jZTogNDY5NS42ICBvbiAzOTk5ICBkZWdyZWVzIG9mIGZyZWVkb21cblJlc2lkdWFsIGRldmlhbmNlOiA0Njk1LjAgIG9uIDM5OTggIGRlZ3JlZXMgb2YgZnJlZWRvbVxuQUlDOiA0Njk5XG5cbk51bWJlciBvZiBGaXNoZXIgU2NvcmluZyBpdGVyYXRpb25zOiA0XG4ifQ== -->
 <pre><code>
 Call:
 glm(formula = correct_response ~ age, family = binomial, data = data)
 
 Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)   
-(Intercept)  0.56466    0.19809    2.85   0.0044 **
-age          0.00432    0.00672    0.64   0.5206   
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  1.13551    0.21049    5.39  6.9e-08 ***
+age         -0.00549    0.00711   -0.77     0.44    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 5095.8  on 3999  degrees of freedom
-Residual deviance: 5095.4  on 3998  degrees of freedom
-AIC: 5099
+    Null deviance: 4695.6  on 3999  degrees of freedom
+Residual deviance: 4695.0  on 3998  degrees of freedom
+AIC: 4699
 
 Number of Fisher Scoring iterations: 4</code></pre>
 <!-- rnb-output-end -->
@@ -2053,41 +2053,41 @@ glmm_model &lt;- glmer(correct_response ~ expected_side + (1 | subject_id),
 model_summary = summary(glmm_model)
 print(model_summary)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSArICgxIHwgc3ViamVjdF9pZClcbiAgIERhdGE6IGRhdGFcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gICAgNTA3MSAgICAgNTA5MCAgICAtMjUzMyAgICAgNTA2NSAgICAgMzk5NyBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICBNaW4gICAgIDFRIE1lZGlhbiAgICAgM1EgICAgTWF4IFxuLTEuODM5IC0xLjI5NiAgMC42NDEgIDAuNzIyICAwLjkyNCBcblxuUmFuZG9tIGVmZmVjdHM6XG4gR3JvdXBzICAgICBOYW1lICAgICAgICBWYXJpYW5jZSBTdGQuRGV2LlxuIHN1YmplY3RfaWQgKEludGVyY2VwdCkgMC4wNDk3ICAgMC4yMjMgICBcbk51bWJlciBvZiBvYnM6IDQwMDAsIGdyb3VwczogIHN1YmplY3RfaWQsIDUwXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAwLjU1NjAgICAgIDAuMDU2NCAgICA5Ljg2ICA8IDJlLTE2ICoqKlxuZXhwZWN0ZWRfc2lkZXJlZCAgIDAuMjkxNiAgICAgMC4wNjc2ICAgIDQuMzEgIDEuNmUtMDUgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgIChJbnRyKVxuZXhwY3RkX3NkcmQgLTAuNTcxXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSArICgxIHwgc3ViamVjdF9pZClcbiAgIERhdGE6IGRhdGFcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gICAgNDY5MSAgICAgNDcxMCAgICAtMjM0MiAgICAgNDY4NSAgICAgMzk5NyBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICBNaW4gICAgIDFRIE1lZGlhbiAgICAgM1EgICAgTWF4IFxuLTEuOTQ0IC0xLjQ0OSAgMC41ODYgIDAuNjI0ICAwLjc1MSBcblxuUmFuZG9tIGVmZmVjdHM6XG4gR3JvdXBzICAgICBOYW1lICAgICAgICBWYXJpYW5jZSBTdGQuRGV2LlxuIHN1YmplY3RfaWQgKEludGVyY2VwdCkgMC4wNDI3ICAgMC4yMDcgICBcbk51bWJlciBvZiBvYnM6IDQwMDAsIGdyb3VwczogIHN1YmplY3RfaWQsIDUwXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAwLjkyNDAgICAgIDAuMDU3OCAgIDE1Ljk5ICAgPDJlLTE2ICoqKlxuZXhwZWN0ZWRfc2lkZXJlZCAgIDAuMTI0NCAgICAgMC4wNzEyICAgIDEuNzUgICAgMC4wODEgLiAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgIChJbnRyKVxuZXhwY3RkX3NkcmQgLTAuNTk5XG4ifQ== -->
 <pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) [&#39;glmerMod&#39;]
  Family: binomial  ( logit )
 Formula: correct_response ~ expected_side + (1 | subject_id)
    Data: data
 
      AIC      BIC   logLik deviance df.resid 
-    5071     5090    -2533     5065     3997 
+    4691     4710    -2342     4685     3997 
 
 Scaled residuals: 
    Min     1Q Median     3Q    Max 
--1.839 -1.296  0.641  0.722  0.924 
+-1.944 -1.449  0.586  0.624  0.751 
 
 Random effects:
  Groups     Name        Variance Std.Dev.
- subject_id (Intercept) 0.0497   0.223   
+ subject_id (Intercept) 0.0427   0.207   
 Number of obs: 4000, groups:  subject_id, 50
 
 Fixed effects:
                  Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)        0.5560     0.0564    9.86  &lt; 2e-16 ***
-expected_sidered   0.2916     0.0676    4.31  1.6e-05 ***
+(Intercept)        0.9240     0.0578   15.99   &lt;2e-16 ***
+expected_sidered   0.1244     0.0712    1.75    0.081 .  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Correlation of Fixed Effects:
             (Intr)
-expctd_sdrd -0.571</code></pre>
+expctd_sdrd -0.599</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The coefficient for expected_sidered suggests that, on the log odds
 scale, being in the “red” condition is associated with an increase of
-0.292 compared to the “blue” condition. This effect is statistically
-significant (p = 1.629^{-5}).</p>
+0.124 compared to the “blue” condition. This effect is statistically
+significant (p = 0.081).</p>
 </div>
 <div id="subject-and-scene-as-random-effects" class="section level2">
 <h2>Subject and scene as random effects</h2>
@@ -2098,10 +2098,10 @@ to estimate the majority colour, regardless of the actual color of the
 majority.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS5cblxuZ2xtbV9tb2RlbDEgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IDEgKyBleHBlY3RlZF9zaWRlICsgKDEgfCBzdWJqZWN0X2lkKSArICgxIHwgc2NlbmVfaWQpLFxuICAgICAgICAgICAgICAgICAgICBkYXRhID0gZGF0YSwgXG4gICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IGJpbm9taWFsKVxuXG4jIFByaW50aW5nIHRoZSBzdW1tYXJ5IG9mIHRoZSBtb2RlbFxubW9kZWxfc3VtbWFyeTEgPSBzdW1tYXJ5KGdsbW1fbW9kZWwxKVxucHJpbnQobW9kZWxfc3VtbWFyeTEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS5cblxuZ2xtbV9tb2RlbDEgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCBzY2VuZV9pZCksXG4gICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkYXRhLCBcbiAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gYmlub21pYWwpXG5cbiMgUHJpbnRpbmcgdGhlIHN1bW1hcnkgb2YgdGhlIG1vZGVsXG5tb2RlbF9zdW1tYXJ5MSA9IHN1bW1hcnkoZ2xtbV9tb2RlbDEpXG5wcmludChtb2RlbF9zdW1tYXJ5MSlcbmBgYCJ9 -->
 <pre class="r"><code># If we assume that the accuracy depends on the expected side, the subject and the scene.
 
-glmm_model1 &lt;- glmer(correct_response ~ 1 + expected_side + (1 | subject_id) + (1 | scene_id),
+glmm_model1 &lt;- glmer(correct_response ~ expected_side + (1 | subject_id) + (1 | scene_id),
                     data = data, 
                     family = binomial)
 
@@ -2109,35 +2109,35 @@ glmm_model1 &lt;- glmer(correct_response ~ 1 + expected_side + (1 | subject_id) 
 model_summary1 = summary(glmm_model1)
 print(model_summary1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBjb3JyZWN0X3Jlc3BvbnNlIH4gMSArIGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCAgICAgIHNjZW5lX2lkKVxuICAgRGF0YTogZGF0YVxuXG4gICAgIEFJQyAgICAgIEJJQyAgIGxvZ0xpayBkZXZpYW5jZSBkZi5yZXNpZCBcbiAgICA0OTQ3ICAgICA0OTcyICAgIC0yNDcwICAgICA0OTM5ICAgICAzOTk2IFxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgIE1pbiAgICAgMVEgTWVkaWFuICAgICAzUSAgICBNYXggXG4tMi4yODggLTEuMDkwICAwLjU2MiAgMC42ODQgIDEuNTE4IFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gc3ViamVjdF9pZCAoSW50ZXJjZXB0KSAwLjA1OTQgICAwLjI0NCAgIFxuIHNjZW5lX2lkICAgKEludGVyY2VwdCkgMC4yMjcxICAgMC40NzcgICBcbk51bWJlciBvZiBvYnM6IDQwMDAsIGdyb3VwczogIHN1YmplY3RfaWQsIDUwOyBzY2VuZV9pZCwgNDBcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgICAgIDAuNTgyMiAgICAgMC4wOTU4ICAgIDYuMDggIDEuMmUtMDkgKioqXG5leHBlY3RlZF9zaWRlcmVkICAgMC4zMDcwICAgICAwLjA2OTMgICAgNC40MyAgOS41ZS0wNiAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpXG5leHBjdGRfc2RyZCAtMC4zNDNcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSArICgxIHwgc3ViamVjdF9pZCkgKyAoMSB8IHNjZW5lX2lkKVxuICAgRGF0YTogZGF0YVxuXG4gICAgIEFJQyAgICAgIEJJQyAgIGxvZ0xpayBkZXZpYW5jZSBkZi5yZXNpZCBcbiAgICA0NjcxICAgICA0Njk2ICAgIC0yMzMyICAgICA0NjYzICAgICAzOTk2IFxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgIE1pbiAgICAgMVEgTWVkaWFuICAgICAzUSAgICBNYXggXG4tMi4xNDUgLTEuMzA4ICAwLjU1OSAgMC42MjAgIDAuOTY3IFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gc3ViamVjdF9pZCAoSW50ZXJjZXB0KSAwLjA0NTUgICAwLjIxMyAgIFxuIHNjZW5lX2lkICAgKEludGVyY2VwdCkgMC4wNzE2ICAgMC4yNjggICBcbk51bWJlciBvZiBvYnM6IDQwMDAsIGdyb3VwczogIHN1YmplY3RfaWQsIDUwOyBzY2VuZV9pZCwgNDBcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgICAgIDAuOTM5MiAgICAgMC4wNzI0ICAgMTIuOTggICA8MmUtMTYgKioqXG5leHBlY3RlZF9zaWRlcmVkICAgMC4xMjYyICAgICAwLjA3MTcgICAgMS43NiAgICAwLjA3OCAuICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpXG5leHBjdGRfc2RyZCAtMC40ODFcbiJ9 -->
 <pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) [&#39;glmerMod&#39;]
  Family: binomial  ( logit )
-Formula: correct_response ~ 1 + expected_side + (1 | subject_id) + (1 |      scene_id)
+Formula: correct_response ~ expected_side + (1 | subject_id) + (1 | scene_id)
    Data: data
 
      AIC      BIC   logLik deviance df.resid 
-    4947     4972    -2470     4939     3996 
+    4671     4696    -2332     4663     3996 
 
 Scaled residuals: 
    Min     1Q Median     3Q    Max 
--2.288 -1.090  0.562  0.684  1.518 
+-2.145 -1.308  0.559  0.620  0.967 
 
 Random effects:
  Groups     Name        Variance Std.Dev.
- subject_id (Intercept) 0.0594   0.244   
- scene_id   (Intercept) 0.2271   0.477   
+ subject_id (Intercept) 0.0455   0.213   
+ scene_id   (Intercept) 0.0716   0.268   
 Number of obs: 4000, groups:  subject_id, 50; scene_id, 40
 
 Fixed effects:
                  Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)        0.5822     0.0958    6.08  1.2e-09 ***
-expected_sidered   0.3070     0.0693    4.43  9.5e-06 ***
+(Intercept)        0.9392     0.0724   12.98   &lt;2e-16 ***
+expected_sidered   0.1262     0.0717    1.76    0.078 .  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Correlation of Fixed Effects:
             (Intr)
-expctd_sdrd -0.343</code></pre>
+expctd_sdrd -0.481</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2146,14 +2146,14 @@ expctd_sdrd -0.343</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5vdmEoZ2xtbV9tb2RlbDEsIGdsbW1fbW9kZWwpXG5gYGAifQ== -->
 <pre class="r"><code>anova(glmm_model1, glmm_model)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YVxuTW9kZWxzOlxuZ2xtbV9tb2RlbDogY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpXG5nbG1tX21vZGVsMTogY29ycmVjdF9yZXNwb25zZSB+IDEgKyBleHBlY3RlZF9zaWRlICsgKDEgfCBzdWJqZWN0X2lkKSArICgxIHwgc2NlbmVfaWQpXG4gICAgICAgICAgICBucGFyICBBSUMgIEJJQyBsb2dMaWsgZGV2aWFuY2UgQ2hpc3EgRGYgUHIoPkNoaXNxKSAgICBcbmdsbW1fbW9kZWwgICAgIDMgNTA3MSA1MDkwICAtMjUzMyAgICAgNTA2NSAgICAgICAgICAgICAgICAgICAgICAgIFxuZ2xtbV9tb2RlbDEgICAgNCA0OTQ3IDQ5NzIgIC0yNDcwICAgICA0OTM5ICAgMTI2ICAxICAgICA8MmUtMTYgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YVxuTW9kZWxzOlxuZ2xtbV9tb2RlbDogY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpXG5nbG1tX21vZGVsMTogY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCBzY2VuZV9pZClcbiAgICAgICAgICAgIG5wYXIgIEFJQyAgQklDIGxvZ0xpayBkZXZpYW5jZSBDaGlzcSBEZiBQcig+Q2hpc3EpICAgIFxuZ2xtbV9tb2RlbCAgICAgMyA0NjkxIDQ3MDkgIC0yMzQyICAgICA0Njg1ICAgICAgICAgICAgICAgICAgICAgICAgXG5nbG1tX21vZGVsMSAgICA0IDQ2NzEgNDY5NiAgLTIzMzIgICAgIDQ2NjMgIDIxLjYgIDEgICAgMy40ZS0wNiAqKipcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuIn0= -->
 <pre><code>Data: data
 Models:
 glmm_model: correct_response ~ expected_side + (1 | subject_id)
-glmm_model1: correct_response ~ 1 + expected_side + (1 | subject_id) + (1 | scene_id)
+glmm_model1: correct_response ~ expected_side + (1 | subject_id) + (1 | scene_id)
             npar  AIC  BIC logLik deviance Chisq Df Pr(&gt;Chisq)    
-glmm_model     3 5071 5090  -2533     5065                        
-glmm_model1    4 4947 4972  -2470     4939   126  1     &lt;2e-16 ***
+glmm_model     3 4691 4709  -2342     4685                        
+glmm_model1    4 4671 4696  -2332     4663  21.6  1    3.4e-06 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <!-- rnb-output-end -->
@@ -2165,7 +2165,193 @@ likelihood and AIC and BIC scores are lower (thus better). In addition
 the fact that the p-value for the model coefficient for when the
 expected_side is red is lower when the scene id is included, indicates
 that scene_id is indeed an important factor in the accuracy.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS5cblxuZ2xtbV9tb2RlbDIgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKiBnZW5kZXIgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCBzY2VuZV9pZCksXG4gICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkYXRhLCBcbiAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gYmlub21pYWwpXG5cbiMgUHJpbnRpbmcgdGhlIHN1bW1hcnkgb2YgdGhlIG1vZGVsXG5tb2RlbF9zdW1tYXJ5MiA9IHN1bW1hcnkoZ2xtbV9tb2RlbDIpXG5wcmludChtb2RlbF9zdW1tYXJ5MilcbmBgYCJ9 -->
+<pre class="r"><code># If we assume that the accuracy depends on the expected side, the subject and the scene.
+
+glmm_model2 &lt;- glmer(correct_response ~ expected_side * gender + (1 | subject_id) + (1 | scene_id),
+                    data = data, 
+                    family = binomial)
+
+# Printing the summary of the model
+model_summary2 = summary(glmm_model2)
+print(model_summary2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSAqIGdlbmRlciArICgxIHwgc3ViamVjdF9pZCkgKyAgICAgICgxIHwgc2NlbmVfaWQpXG4gICBEYXRhOiBkYXRhXG5cbiAgICAgQUlDICAgICAgQklDICAgbG9nTGlrIGRldmlhbmNlIGRmLnJlc2lkIFxuICAgIDQ2NjUgICAgIDQ3MDMgICAgLTIzMjcgICAgIDQ2NTMgICAgIDM5OTQgXG5cblNjYWxlZCByZXNpZHVhbHM6IFxuICAgTWluICAgICAxUSBNZWRpYW4gICAgIDNRICAgIE1heCBcbi0yLjIzOCAtMS4yOTggIDAuNTU2ICAwLjYyNCAgMS4wMDEgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBzdWJqZWN0X2lkIChJbnRlcmNlcHQpIDAuMDQ1OSAgIDAuMjE0ICAgXG4gc2NlbmVfaWQgICAoSW50ZXJjZXB0KSAwLjA3MjEgICAwLjI2OCAgIFxuTnVtYmVyIG9mIG9iczogNDAwMCwgZ3JvdXBzOiAgc3ViamVjdF9pZCwgNTA7IHNjZW5lX2lkLCA0MFxuXG5GaXhlZCBlZmZlY3RzOlxuICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAxLjA4OSAgICAgIDAuMTE3ICAgIDkuMjcgICA8MmUtMTYgKioqXG5leHBlY3RlZF9zaWRlcmVkICAgICAgICAgICAtMC4yMTMgICAgICAwLjEzMCAgIC0xLjYzICAgMC4xMDI5ICAgIFxuZ2VuZGVybSAgICAgICAgICAgICAgICAgICAgLTAuMjExICAgICAgMC4xMjkgICAtMS42MyAgIDAuMTAzMiAgICBcbmV4cGVjdGVkX3NpZGVyZWQ6Z2VuZGVybSAgICAwLjQ4NyAgICAgIDAuMTU2ICAgIDMuMTEgICAwLjAwMTggKiogXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgIChJbnRyKSBleHBjdF8gZ2VuZHJtXG5leHBjdGRfc2RyZCAtMC41ODEgICAgICAgICAgICAgIFxuZ2VuZGVybSAgICAgLTAuNzg2ICAwLjUyNiAgICAgICBcbmV4cGN0ZF9zZHI6ICAwLjQ4NSAtMC44MzQgLTAuNjEyXG4ifQ== -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) [&#39;glmerMod&#39;]
+ Family: binomial  ( logit )
+Formula: correct_response ~ expected_side * gender + (1 | subject_id) +      (1 | scene_id)
+   Data: data
+
+     AIC      BIC   logLik deviance df.resid 
+    4665     4703    -2327     4653     3994 
+
+Scaled residuals: 
+   Min     1Q Median     3Q    Max 
+-2.238 -1.298  0.556  0.624  1.001 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ subject_id (Intercept) 0.0459   0.214   
+ scene_id   (Intercept) 0.0721   0.268   
+Number of obs: 4000, groups:  subject_id, 50; scene_id, 40
+
+Fixed effects:
+                         Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                 1.089      0.117    9.27   &lt;2e-16 ***
+expected_sidered           -0.213      0.130   -1.63   0.1029    
+genderm                    -0.211      0.129   -1.63   0.1032    
+expected_sidered:genderm    0.487      0.156    3.11   0.0018 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) expct_ gendrm
+expctd_sdrd -0.581              
+genderm     -0.786  0.526       
+expctd_sdr:  0.485 -0.834 -0.612</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
+</div>
+<div id="response-time" class="section level1">
+<h1>Response time</h1>
+<p>Does age affect response time?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1tX21vZGVsMSA8LSBsbWVyKHJlc3BvbnNlX3RpbWUgfiBhZ2UgKyAoMSB8IHNjZW5lX2lkKSArICgxIHwgc3ViamVjdF9pZCksXG4gICAgICAgICAgICAgICAgICAgZGF0YSA9IGRhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>lmm_model1 &lt;- lmer(response_time ~ age + (1 | scene_id) + (1 | subject_id),
+                   data = data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYm91bmRhcnkgKHNpbmd1bGFyKSBmaXQ6IHNlZSBoZWxwKCdpc1Npbmd1bGFyJylcbiJ9 -->
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWxcbnByaW50KHN1bW1hcnkobG1tX21vZGVsMSkpXG5gYGAifQ== -->
+<pre class="r"><code># Printing the summary of the model
+print(summary(lmm_model1))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBSRU1MIFsnbG1lck1vZCddXG5Gb3JtdWxhOiByZXNwb25zZV90aW1lIH4gYWdlICsgKDEgfCBzY2VuZV9pZCkgKyAoMSB8IHN1YmplY3RfaWQpXG4gICBEYXRhOiBkYXRhXG5cblJFTUwgY3JpdGVyaW9uIGF0IGNvbnZlcmdlbmNlOiA1MjM0NVxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgIE1pbiAgICAgMVEgTWVkaWFuICAgICAzUSAgICBNYXggXG4tMy4xMjcgLTAuNzI1IC0wLjA3NCAgMC42NDAgIDMuNzkzIFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gc3ViamVjdF9pZCAoSW50ZXJjZXB0KSAgNzcyOSAgICAgODcuOSAgIFxuIHNjZW5lX2lkICAgKEludGVyY2VwdCkgICAgIDAgICAgICAwLjAgICBcbiBSZXNpZHVhbCAgICAgICAgICAgICAgIDI3MjI3ICAgIDE2NS4wICAgXG5OdW1iZXIgb2Ygb2JzOiA0MDAwLCBncm91cHM6ICBzdWJqZWN0X2lkLCA1MDsgc2NlbmVfaWQsIDQwXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWVcbihJbnRlcmNlcHQpICAgOTY3LjYxICAgICAgNzUuMTggICAgMTIuOVxuYWdlICAgICAgICAgICAgLTEuMDIgICAgICAgMi41NSAgICAtMC40XG5cbkNvcnJlbGF0aW9uIG9mIEZpeGVkIEVmZmVjdHM6XG4gICAgKEludHIpXG5hZ2UgLTAuOTg2XG5vcHRpbWl6ZXIgKG5sb3B0d3JhcCkgY29udmVyZ2VuY2UgY29kZTogMCAoT0spXG5ib3VuZGFyeSAoc2luZ3VsYXIpIGZpdDogc2VlIGhlbHAoJ2lzU2luZ3VsYXInKVxuIn0= -->
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: response_time ~ age + (1 | scene_id) + (1 | subject_id)
+   Data: data
+
+REML criterion at convergence: 52345
+
+Scaled residuals: 
+   Min     1Q Median     3Q    Max 
+-3.127 -0.725 -0.074  0.640  3.793 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ subject_id (Intercept)  7729     87.9   
+ scene_id   (Intercept)     0      0.0   
+ Residual               27227    165.0   
+Number of obs: 4000, groups:  subject_id, 50; scene_id, 40
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)   967.61      75.18    12.9
+age            -1.02       2.55    -0.4
+
+Correlation of Fixed Effects:
+    (Intr)
+age -0.986
+optimizer (nloptwrap) convergence code: 0 (OK)
+boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Does gender influence response time?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1tX21vZGVsMiA8LSBsbWVyKHJlc3BvbnNlX3RpbWUgfiBnZW5kZXIgKyAoMSB8IHNjZW5lX2lkKSArICgxIHwgc3ViamVjdF9pZCksXG4gICAgICAgICAgICAgICAgICAgZGF0YSA9IGRhdGEpXG5gYGAifQ== -->
+<pre class="r"><code>lmm_model2 &lt;- lmer(response_time ~ gender + (1 | scene_id) + (1 | subject_id),
+                   data = data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYm91bmRhcnkgKHNpbmd1bGFyKSBmaXQ6IHNlZSBoZWxwKCdpc1Npbmd1bGFyJylcbiJ9 -->
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWxcbnByaW50KHN1bW1hcnkobG1tX21vZGVsMikpXG5gYGAifQ== -->
+<pre class="r"><code># Printing the summary of the model
+print(summary(lmm_model2))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBSRU1MIFsnbG1lck1vZCddXG5Gb3JtdWxhOiByZXNwb25zZV90aW1lIH4gZ2VuZGVyICsgKDEgfCBzY2VuZV9pZCkgKyAoMSB8IHN1YmplY3RfaWQpXG4gICBEYXRhOiBkYXRhXG5cblJFTUwgY3JpdGVyaW9uIGF0IGNvbnZlcmdlbmNlOiA1MjM0MVxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgIE1pbiAgICAgMVEgTWVkaWFuICAgICAzUSAgICBNYXggXG4tMy4xMjkgLTAuNzI1IC0wLjA3MyAgMC42NDAgIDMuNzk1IFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gc3ViamVjdF9pZCAoSW50ZXJjZXB0KSAgNzc1NiAgICAgODguMSAgIFxuIHNjZW5lX2lkICAgKEludGVyY2VwdCkgICAgIDAgICAgICAwLjAgICBcbiBSZXNpZHVhbCAgICAgICAgICAgICAgIDI3MjI3ICAgIDE2NS4wICAgXG5OdW1iZXIgb2Ygb2JzOiA0MDAwLCBncm91cHM6ICBzdWJqZWN0X2lkLCA1MDsgc2NlbmVfaWQsIDQwXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHQgdmFsdWVcbihJbnRlcmNlcHQpICA5MzguMTE1ICAgICAyMy4yMzMgICA0MC4zOFxuZ2VuZGVybSAgICAgICAtMC4zODkgICAgIDI3Ljc2OSAgIC0wLjAxXG5cbkNvcnJlbGF0aW9uIG9mIEZpeGVkIEVmZmVjdHM6XG4gICAgICAgIChJbnRyKVxuZ2VuZGVybSAtMC44Mzdcbm9wdGltaXplciAobmxvcHR3cmFwKSBjb252ZXJnZW5jZSBjb2RlOiAwIChPSylcbmJvdW5kYXJ5IChzaW5ndWxhcikgZml0OiBzZWUgaGVscCgnaXNTaW5ndWxhcicpXG4ifQ== -->
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: response_time ~ gender + (1 | scene_id) + (1 | subject_id)
+   Data: data
+
+REML criterion at convergence: 52341
+
+Scaled residuals: 
+   Min     1Q Median     3Q    Max 
+-3.129 -0.725 -0.073  0.640  3.795 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ subject_id (Intercept)  7756     88.1   
+ scene_id   (Intercept)     0      0.0   
+ Residual               27227    165.0   
+Number of obs: 4000, groups:  subject_id, 50; scene_id, 40
+
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  938.115     23.233   40.38
+genderm       -0.389     27.769   -0.01
+
+Correlation of Fixed Effects:
+        (Intr)
+genderm -0.837
+optimizer (nloptwrap) convergence code: 0 (OK)
+boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="learning-effect" class="section level1">
+<h1>Learning effect</h1>
+<p>We can check if there is a learning effect. Does the response time
+decrease with trials?</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSR0cmlhbF9ub19zY2FsZWQgPSBkYXRhJHRyaWFsX25vIC8gODAuMFxubG1tX21vZGVsX2wgPC0gbG1lcihyZXNwb25zZV90aW1lICB+IHRyaWFsX25vX3NjYWxlZCArICgxIHwgc3ViamVjdF9pZCkgKyAoMSB8IHNjZW5lX2lkKSxcbiAgICAgICAgICAgICAgICAgICBkYXRhID0gZGF0YSlcblxuIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWxcbnByaW50KHN1bW1hcnkobG1tX21vZGVsX2wpKVxuYGBgIn0= -->
+<pre class="r"><code>data$trial_no_scaled = data$trial_no / 80.0
+lmm_model_l &lt;- lmer(response_time  ~ trial_no_scaled + (1 | subject_id) + (1 | scene_id),
+                   data = data)
+
+# Printing the summary of the model
+print(summary(lmm_model_l))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBSRU1MIFsnbG1lck1vZCddXG5Gb3JtdWxhOiByZXNwb25zZV90aW1lIH4gdHJpYWxfbm9fc2NhbGVkICsgKDEgfCBzdWJqZWN0X2lkKSArICgxIHwgc2NlbmVfaWQpXG4gICBEYXRhOiBkYXRhXG5cblJFTUwgY3JpdGVyaW9uIGF0IGNvbnZlcmdlbmNlOiA1MTc0MlxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgIE1pbiAgICAgMVEgTWVkaWFuICAgICAzUSAgICBNYXggXG4tMy4xMTggLTAuNzI1IC0wLjA2NSAgMC42NzAgIDMuNzI1IFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gc3ViamVjdF9pZCAoSW50ZXJjZXB0KSAgNzYzOS42ICAgODcuNDAgIFxuIHNjZW5lX2lkICAgKEludGVyY2VwdCkgICAgMzQuNyAgICA1Ljg5ICBcbiBSZXNpZHVhbCAgICAgICAgICAgICAgIDIzMzYwLjkgIDE1Mi44NCAgXG5OdW1iZXIgb2Ygb2JzOiA0MDAwLCBncm91cHM6ICBzdWJqZWN0X2lkLCA1MDsgc2NlbmVfaWQsIDQwXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlXG4oSW50ZXJjZXB0KSAgICAgIDEwNDMuMjAgICAgICAxMy4yOSAgICA3OC41XG50cmlhbF9ub19zY2FsZWQgIC0yMTMuMzggICAgICAgOC4zNyAgIC0yNS41XG5cbkNvcnJlbGF0aW9uIG9mIEZpeGVkIEVmZmVjdHM6XG4gICAgICAgICAgICAoSW50cilcbnRyaWxfbl9zY2xkIC0wLjMxMVxuIn0= -->
+<pre><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: response_time ~ trial_no_scaled + (1 | subject_id) + (1 | scene_id)
+   Data: data
+
+REML criterion at convergence: 51742
+
+Scaled residuals: 
+   Min     1Q Median     3Q    Max 
+-3.118 -0.725 -0.065  0.670  3.725 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ subject_id (Intercept)  7639.6   87.40  
+ scene_id   (Intercept)    34.7    5.89  
+ Residual               23360.9  152.84  
+Number of obs: 4000, groups:  subject_id, 50; scene_id, 40
+
+Fixed effects:
+                Estimate Std. Error t value
+(Intercept)      1043.20      13.29    78.5
+trial_no_scaled  -213.38       8.37   -25.5
+
+Correlation of Fixed Effects:
+            (Intr)
+tril_n_scld -0.311</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
@@ -2174,7 +2360,7 @@ is red, subject are more likely to identify the majority team.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZvb3RiYWxsIEltYWdlIFBlcmNlcHRpb24gQW5hbHlzaXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmxpYnJhcnkobG1lNCkNCmlmKCFyZXF1aXJlKCdEZXNjVG9vbHMnKSkgew0KICBpbnN0YWxsLnBhY2thZ2VzKCdEZXNjVG9vbHMnKQ0KICBsaWJyYXJ5KCdEZXNjVG9vbHMnKQ0KfQ0KDQpvcHRpb25zKGRpZ2l0cz0zKQ0KYGBgDQoNCiMgSW50cm9kdWN0aW9uDQoNClRoaXMgbm90ZWJvb2sgcGVyZm9ybXMgYSBzdGF0aXN0aWNhbCBhbmFseXNpcyBvZiBhbiBleHBlcmltZW50IHdoZXJlIHN1YmplY3RzIHdlcmUgYXNrZWQgdG8gaWRlbnRpZnkgdGhlIGNvbG91ciBvZiB0aGUgbWFqb3JpdHkgdGVhbSwgZWl0aGVyIHJlZCBvciBibHVlLCBpbiBhIHNlcmllcyBvZiBmb290YmFsbCBwaXRjaCBpbWFnZXMuIFdlIGFpbSB0byBleGFtaW5lIHdoZXRoZXIgdGhlIHRlYW0gY29sb3IgaW5mbHVlbmNlcyB0aGUgYWNjdXJhY3kgb2YgcmVzcG9uc2VzLg0KDQojIERhdGEgbG9hZGluZw0KDQpgYGB7cn0NCiMgTG9hZCB0aGUgZGF0YQ0KZGF0YSA8LSByZWFkLmNzdigiLi4vc3ludGhldGljX2VucmljaGVkX2d0LmNzdiIpDQoNCiMgUGVlayBpbnRvIHRoZSBkYXRhDQpoZWFkKGRhdGEpDQpgYGANCg0KIyBEYXRhIFByZXByb2Nlc3NpbmcNCg0KYGBge3J9DQojIENyZWF0aW5nIGEgYmluYXJ5IGFjY3VyYWN5IHZhcmlhYmxlDQpkYXRhJGNvcnJlY3RfcmVzcG9uc2UgPC0gaWZlbHNlKGRhdGEkZXhwZWN0ZWRfc2lkZSA9PSBkYXRhJHJlc3BvbnNlX3NpZGUsIDEsIDApDQoNCiMgRW5jb2RpbmcgJ2V4cGVjdGVkX3NpZGUnIGFzIGEgZmFjdG9yIHZhcmlhYmxlDQpkYXRhJGV4cGVjdGVkX3NpZGUgPC0gYXMuZmFjdG9yKGRhdGEkZXhwZWN0ZWRfc2lkZSkNCmRhdGEkcmVzcG9uc2Vfc2lkZSA8LSBhcy5mYWN0b3IoZGF0YSRyZXNwb25zZV9zaWRlKQ0KZGF0YSRnZW5kZXIgPC0gYXMuZmFjdG9yKGRhdGEkZ2VuZGVyKQ0KZGF0YSRrbm93c19mb290YmFsbCA8LSBhcy5mYWN0b3IoZGF0YSRrbm93c19mb290YmFsbCkNCmRhdGEkc2NlbmVfaWQgPC0gYXMuZmFjdG9yKGRhdGEkc2NlbmVfaWQpDQpkYXRhJHN1YmplY3RfaWQgPC0gYXMuZmFjdG9yKGRhdGEkc3ViamVjdF9pZCkNCg0KIyBTdW1tYXJ5IG9mIHByZXByb2Nlc3NpbmcNCnN1bW1hcnkoZGF0YSRjb3JyZWN0X3Jlc3BvbnNlKQ0KdGFibGUoZGF0YSRleHBlY3RlZF9zaWRlKQ0KYGBgDQoNCiMgU3RhdGlzdGljYWwgdGVzdHMNCg0KIyMgQ2hpLVNxdWFyZSBUZXN0DQoNClRoZSBjaGktc3F1YXJlZCB0ZXN0IGlzIHVzZWQgdG8gdGVzdCBmb3IgaW5kZXBlbmRlbmNlIGJldHdlZW4gdHdvIGNhdGVnb3JpY2FsIHZhcmlhYmxlcy4gV2UgcGVyZm9ybSBhIGNoaS1zcXVhcmUgdGVzdCB0byBleGFtaW5lIHdoZXRoZXIgdGhlIGNvbG9yIG9mIHRoZSBtYWpvcml0eSB0ZWFtIGlzIGluZGVwZW5kZW50IGZyb20gdGhlIHJlc3BvbnNlIGFjY3VyYWN5LiBJZiB0aGUgY29sb3IgYWZmZWN0cyB0aGUgYWNjdXJhY3kgdGhlbiB0aGUgcC12YWx1ZSBvZiB0aGlzIHRlc3Qgd2lsbCBiZSBzaWduaWZpY2FudCAoPCAkXGFscGhhPTAuMDUkKQ0KDQpgYGB7cn0NCiMgQ29uc3RydWN0aW5nIGEgY29udGluZ2VuY3kgdGFibGUNCmNvbnRpbmdlbmN5X3RhYmxlIDwtIHRhYmxlKGRhdGEkZXhwZWN0ZWRfc2lkZSwgZGF0YSRjb3JyZWN0X3Jlc3BvbnNlKQ0KcHJpbnQoY29udGluZ2VuY3lfdGFibGUpDQoNCiMgUGVyZm9ybWluZyB0aGUgY2hpLXNxdWFyZSB0ZXN0DQpjaGkyX3Rlc3QgPC0gY2hpc3EudGVzdChjb250aW5nZW5jeV90YWJsZSkNCg0KIyBQcmludGluZyB0aGUgcmVzdWx0cw0KcHJpbnQoY2hpMl90ZXN0KQ0KYGBgDQojIyBQcm9wb3J0aW9uIHRlc3QNCg0KV2UgcGVyZm9ybSBhIHByb3BvcnRpb24gdGVzdCB0byBleGFtaW5lIHdoZXRoZXIgdGhlIHByb3BvcnRpb24gb2YgY29ycmVjdCBhbnN3ZXJzIChhY2N1cmFjeSkgaXMgZGlmZmVyZW50IHdoZW4gdGhlIG1ham9yaXR5IHRlYW0gaXMgcmVkIG9yIHdoZW4gaXQncyBibHVlLg0KVGhpcyBpcyBhY3R1YWxseSBpbmNvcnJlY3QsIHNpbmNlIHRoZSBzYW1lIHN1YmplY3QgaXMgYW5kIHRoZSBzYW1lIGltYWdlIGlzIHRlc3RlZCBmb3IgYm90aCBjb25kaXRpb25zIG9mIGludGVyZXN0IChleHBlY3RlZF9zaWRlKS4NCg0KYGBge3J9DQpyY3QgPSBjb250aW5nZW5jeV90YWJsZVtjKDIsIDEpLCBjKDIsIDEpXQ0KcHJpbnQocmN0KQ0KcHJvcC50ZXN0KHJjdCwgY29ycmVjdD1UUlVFKQ0KYGBgDQojIyBNY05lbWFyJ3MgdGVzdA0KDQpUaGUgaHlwb3RoZXNpcyB1bmRlciBjb25zaWRlcmF0aW9uIGlzIGlmIHJlc3BvbnNlIGFjY3VyYWN5IGluY3JlYXNlcyBpZiB0aGUgbWFqb3JpdHkgc2lkZSBpcyByZWQuIFRoZSBmYWN0b3JzIGFyZSBwYWlyZWQgYmVjYXVzZSBlYWNoIHN1YmplY3QgYW5kIGVhY2ggc2NlbmUgaXMgdGVzdGVkIGZvciBib3RoIHJlZCBhbmQgYmx1ZSBtYWpvcml0eSBjb25maWd1cmF0aW9ucy4gQmVjYXVzZSB0aGUgdGVzdGVkIGZhY3RvcnMgYXJlIHBhaXJlZCBhbmQgYmluYXJ5LCB0aGUgYXNzdW1wdGlvbnMgb2YgTWNOZW1hcidzIHRlc3QgYXJlIHNhdGlzZmllZCBhbmQgdGhpcyB0ZXN0IGNhbiBiZSBhcHBsaWVkIHRvIHRlc3QgZm9yIHRoZSBwcmVzZW5jZSBvZiBhbiBlZmZlY3QuDQoNCmBgYHtyfQ0KDQojIFNwbGl0IGRhdGEgaW50byB0d28gc2V0czogb25lIGZvciAncmVkJyBhbmQgb25lIGZvciAnYmx1ZScNCmRhdGFfcmVkIDwtIGRhdGFbZGF0YSRleHBlY3RlZF9zaWRlID09ICdyZWQnLCBjKCJzdWJqZWN0X2lkIiwgInNjZW5lX2lkIiwgImNvcnJlY3RfcmVzcG9uc2UiKV0NCmRhdGFfYmx1ZSA8LSBkYXRhW2RhdGEkZXhwZWN0ZWRfc2lkZSA9PSAnYmx1ZScsIGMoInN1YmplY3RfaWQiLCAic2NlbmVfaWQiLCAiY29ycmVjdF9yZXNwb25zZSIpXQ0KDQojIE1lcmdlIHRoZSB0d28gc2V0cyBzaWRlIGJ5IHNpZGUgdXNpbmcgc3ViamVjdF9pZCBhcyB0aGUga2V5DQp3aWRlX2RhdGEgPC0gbWVyZ2UoZGF0YV9yZWQsIGRhdGFfYmx1ZSwgYnkgPSBjKCJzdWJqZWN0X2lkIiwgInNjZW5lX2lkIiksIHN1ZmZpeGVzID0gYygiX3JlZCIsICJfYmx1ZSIpKQ0KDQojIFBlcmZvcm0gTWNOZW1hcidzIFRlc3QNCm1jbmVtYXJfdGVzdF9yZXN1bHQgPC0gbWNuZW1hci50ZXN0KHdpZGVfZGF0YSRjb3JyZWN0X3Jlc3BvbnNlX3JlZCwgd2lkZV9kYXRhJGNvcnJlY3RfcmVzcG9uc2VfYmx1ZSwgY29ycmVjdD1UUlVFKQ0KDQojIERpc3BsYXkgdGhlIHJlc3VsdA0KcHJpbnQobWNuZW1hcl90ZXN0X3Jlc3VsdCkNCmBgYA0KR2l2ZW4gdGhlIGNvbnRpbmdlbmN5IHRhYmxlLCB3ZSBjYW4gY2FsY3VsYXRlIHRoZSBjb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgb2RkcyByYXRpby4gVGhlIE9kZHMgUmF0aW8gKE9SKSBpcyBhIG1lYXN1cmUgb2YgYXNzb2NpYXRpb24gYmV0d2VlbiBhbiBleHBvc3VyZSBhbmQgYW4gb3V0Y29tZS4gSW4gdGhpcyBjYXNlIHRoZSBPUiByZXByZXNlbnRzIHRoZSByYXRpbyBvZiB0aGUgb2RkcyB0aGF0IHRoZSByZXNwb25zZSBvZiBhIHN1YmplY3QgaXMgY29ycmVjdCB3aGVuIHRoZSBtYWpvcml0eSB0ZWFtIGlzIHJlZCwgcmVsYXRpdmUgdG8gdGhlIG9kZHMgb2YgYSBjb3JyZWN0IGFuc3dlciB3aGVuIHRoZSBtYWpvcml0eSB0ZWFtIGNvbG91ciBpcyBibHVlLg0KDQpgYGB7cn0NCm9yID0gT2Rkc1JhdGlvKHJjdCwgbWV0aG9kPSJtaWRwIiwgY29uZi5sZXZlbD0wLjk1KQ0KcHJpbnQob3IpDQpgYGANClRoZSBjYWxjdWxhdGVkIE9SIHZhbHVlIG9mIGByIG9yWzFdYCBtZWFucyB0aGF0IG9kZHMgaW5jcmVhc2UgYnkgYHIgb3JbMV0tMWAlIHdoZW4gdGhlIG1ham9yaXR5IHRlYW0gY29sb3IgaXMgcmVkLiBUaGUgOTUlIGNvbmZpZGVuY2UgaW50ZXJ2YWwgZm9yIHRoZSBPUiBpcyBgciBvclsxOjJdYCwgYW5kIGJlY2F1c2UgaXQgZG9lc24ndCBpbmNsdWRlIHRoZSB2YWx1ZSBvZiAxIGl0IG1lYW5zIHRoYXQgdGhlIGVmZmVjdCBpcyBzaWduaWZpY2FudCwgYXMgcHJldmlvdXNseSB2ZXJpZmllZCBieSB0aGUgTWNNbmVtYXIgdGVzdC4NCg0KIyBMb2dpc3RpYyByZWdyZXNzaW9uIA0KYGBge3J9DQpzdW1tYXJ5KGdsbShjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSwgZGF0YSA9IGRhdGEsIGZhbWlseSA9IGJpbm9taWFsKSkNCmBgYA0KDQpgYGB7cn0NCnN1bW1hcnkoZ2xtKGNvcnJlY3RfcmVzcG9uc2UgfiBnZW5kZXIsIGRhdGEgPSBkYXRhLCBmYW1pbHkgPSBiaW5vbWlhbCkpDQpgYGANCg0KYGBge3J9DQpzdW1tYXJ5KGdsbShjb3JyZWN0X3Jlc3BvbnNlIH4gYWdlLCBkYXRhID0gZGF0YSwgZmFtaWx5ID0gYmlub21pYWwpKQ0KYGBgDQoNCiMjIFN1YmplY3QgYXMgcmFuZG9tIGVmZmVjdA0KDQpXZSBmaXQgYSBHTE1NIHdpdGggYSBsb2dpc3RpYyBsaW5rIGZ1bmN0aW9uIHRvIGV4YW1pbmUgdGhlIGluZmx1ZW5jZSBvZiB0ZWFtIGNvbG9yIG9uIHJlc3BvbnNlIGFjY3VyYWN5LCBjb25zaWRlcmluZyB3aXRoaW4tc3ViamVjdCB2YXJpYWJpbGl0eS4NCg0KYGBge3J9DQojIEZpdHRpbmcgdGhlIEdMTU0NCmdsbW1fbW9kZWwgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpLCANCiAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGRhdGEsIA0KICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBiaW5vbWlhbCkNCg0KIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWwNCm1vZGVsX3N1bW1hcnkgPSBzdW1tYXJ5KGdsbW1fbW9kZWwpDQpwcmludChtb2RlbF9zdW1tYXJ5KQ0KYGBgDQpUaGUgY29lZmZpY2llbnQgZm9yIGV4cGVjdGVkX3NpZGVyZWQgc3VnZ2VzdHMgdGhhdCwgb24gdGhlIGxvZyBvZGRzIHNjYWxlLCBiZWluZyBpbiB0aGUgInJlZCIgY29uZGl0aW9uIGlzIGFzc29jaWF0ZWQgd2l0aCBhbiBpbmNyZWFzZSBvZiBgciBtb2RlbF9zdW1tYXJ5JGNvZWZmaWNpZW50c1syLCAxXWAgY29tcGFyZWQgdG8gdGhlICJibHVlIiBjb25kaXRpb24uIFRoaXMgZWZmZWN0IGlzIHN0YXRpc3RpY2FsbHkgc2lnbmlmaWNhbnQgKHAgPSBgciBtb2RlbF9zdW1tYXJ5JGNvZWZmaWNpZW50c1syLCA0XWApLg0KDQojIyBTdWJqZWN0IGFuZCBzY2VuZSBhcyByYW5kb20gZWZmZWN0cw0KDQpOZXh0LCB3ZSBmaXQgYSBzaW1pbGFyIG1vZGVsIGJ1dCB3ZSBhZGRpdGlvbmFsbHkgY29uc2lkZXIgY29uc2lkZXJpbmcgd2l0aGluLXN1YmplY3Qgd2l0aGluLXNjZW5lIHZhcmlhYmlsaXR5LiBUaGlzIGlzIG1vdGl2YXRlZCBieSB0aGUgZmFjdCB0aGF0IHRoZSBncm91cGluZyBvZiBwbGF5ZXJzIGluIGEgc2NlbmUgbWlnaHQgbWFrZSBpdCBlYXNpZXIgb3IgaGFyZGVyIHRvIGVzdGltYXRlIHRoZSBtYWpvcml0eSBjb2xvdXIsIHJlZ2FyZGxlc3Mgb2YgdGhlIGFjdHVhbCBjb2xvciBvZiB0aGUgbWFqb3JpdHkuDQoNCmBgYHtyfQ0KIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS4NCg0KZ2xtbV9tb2RlbDEgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IDEgKyBleHBlY3RlZF9zaWRlICsgKDEgfCBzdWJqZWN0X2lkKSArICgxIHwgc2NlbmVfaWQpLA0KICAgICAgICAgICAgICAgICAgICBkYXRhID0gZGF0YSwgDQogICAgICAgICAgICAgICAgICAgIGZhbWlseSA9IGJpbm9taWFsKQ0KDQojIFByaW50aW5nIHRoZSBzdW1tYXJ5IG9mIHRoZSBtb2RlbA0KbW9kZWxfc3VtbWFyeTEgPSBzdW1tYXJ5KGdsbW1fbW9kZWwxKQ0KcHJpbnQobW9kZWxfc3VtbWFyeTEpDQoNCmBgYA0KDQpgYGB7cn0NCmFub3ZhKGdsbW1fbW9kZWwxLCBnbG1tX21vZGVsKQ0KYGBgDQpUaGUgYW5vdmEgdGVzdCwgaW5kaWNhdGVzIHRoYXQgdGhlIG1vcmUgZGV0YWlsZWQgbW9kZWwgaXMgc2lnbmlmaWNhbnRseSBkaWZmZXJlbnQgdGhhbiB0aGUgc2ltcGxlciBtb2RlbC4gQWRkaXRpb25hbGx5LCB0aGUgbG9nIGxpa2VsaWhvb2QgYW5kIEFJQyBhbmQgQklDIHNjb3JlcyBhcmUgbG93ZXIgKHRodXMgYmV0dGVyKS4gSW4gYWRkaXRpb24gdGhlIGZhY3QgdGhhdCB0aGUgcC12YWx1ZSBmb3IgdGhlIG1vZGVsIGNvZWZmaWNpZW50IGZvciB3aGVuIHRoZSBleHBlY3RlZF9zaWRlIGlzIHJlZCBpcyBsb3dlciB3aGVuIHRoZSBzY2VuZSBpZCBpcyBpbmNsdWRlZCwgaW5kaWNhdGVzIHRoYXQgc2NlbmVfaWQgaXMgaW5kZWVkIGFuIGltcG9ydGFudCBmYWN0b3IgaW4gdGhlIGFjY3VyYWN5Lg0KDQojIENvbmNsdXNpb24NCkFsbCBzdGF0aXN0aWNhbCB0ZXN0cyBoYXZlIHNob3duIHRoYXQgd2hlbiB0aGUgbWFqb3JpdHkgdGVhbSBjb2xvdXIgaXMgcmVkLCBzdWJqZWN0IGFyZSBtb3JlIGxpa2VseSB0byBpZGVudGlmeSB0aGUgbWFqb3JpdHkgdGVhbS4gDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkZvb3RiYWxsIEltYWdlIFBlcmNlcHRpb24gQW5hbHlzaXMiDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmxpYnJhcnkobG1lNCkNCmlmKCFyZXF1aXJlKCdEZXNjVG9vbHMnKSkgew0KICBpbnN0YWxsLnBhY2thZ2VzKCdEZXNjVG9vbHMnKQ0KICBsaWJyYXJ5KCdEZXNjVG9vbHMnKQ0KfQ0KDQpvcHRpb25zKGRpZ2l0cz0zKQ0KYGBgDQoNCiMgSW50cm9kdWN0aW9uDQoNClRoaXMgbm90ZWJvb2sgcGVyZm9ybXMgYSBzdGF0aXN0aWNhbCBhbmFseXNpcyBvZiBhbiBleHBlcmltZW50IHdoZXJlIHN1YmplY3RzIHdlcmUgYXNrZWQgdG8gaWRlbnRpZnkgdGhlIGNvbG91ciBvZiB0aGUgbWFqb3JpdHkgdGVhbSwgZWl0aGVyIHJlZCBvciBibHVlLCBpbiBhIHNlcmllcyBvZiBmb290YmFsbCBwaXRjaCBpbWFnZXMuIFdlIGFpbSB0byBleGFtaW5lIHdoZXRoZXIgdGhlIHRlYW0gY29sb3IgaW5mbHVlbmNlcyB0aGUgYWNjdXJhY3kgb2YgcmVzcG9uc2VzLg0KDQojIERhdGEgbG9hZGluZw0KDQpgYGB7cn0NCiMgTG9hZCB0aGUgZGF0YQ0KZGF0YSA8LSByZWFkLmNzdigic3ludGhldGljX2VucmljaGVkX2d0LmNzdiIpDQoNCiMgUGVlayBpbnRvIHRoZSBkYXRhDQpoZWFkKGRhdGEpDQpgYGANCg0KIyBEYXRhIFByZXByb2Nlc3NpbmcNCg0KYGBge3J9DQojIENyZWF0aW5nIGEgYmluYXJ5IGFjY3VyYWN5IHZhcmlhYmxlDQpkYXRhJGNvcnJlY3RfcmVzcG9uc2UgPC0gaWZlbHNlKGRhdGEkZXhwZWN0ZWRfc2lkZSA9PSBkYXRhJHJlc3BvbnNlX3NpZGUsIDEsIDApDQoNCiMgRW5jb2RpbmcgJ2V4cGVjdGVkX3NpZGUnIGFzIGEgZmFjdG9yIHZhcmlhYmxlDQpkYXRhJGV4cGVjdGVkX3NpZGUgPC0gYXMuZmFjdG9yKGRhdGEkZXhwZWN0ZWRfc2lkZSkNCmRhdGEkcmVzcG9uc2Vfc2lkZSA8LSBhcy5mYWN0b3IoZGF0YSRyZXNwb25zZV9zaWRlKQ0KZGF0YSRnZW5kZXIgPC0gYXMuZmFjdG9yKGRhdGEkZ2VuZGVyKQ0KZGF0YSRleHBlcmllbmNlIDwtIGFzLmZhY3RvcihkYXRhJGV4cGVyaWVuY2UpDQpkYXRhJHNjZW5lX2lkIDwtIGFzLmZhY3RvcihkYXRhJHNjZW5lX2lkKQ0KZGF0YSRzdWJqZWN0X2lkIDwtIGFzLmZhY3RvcihkYXRhJHN1YmplY3RfaWQpDQoNCiMgU3VtbWFyeSBvZiBwcmVwcm9jZXNzaW5nDQpzdW1tYXJ5KGRhdGEkY29ycmVjdF9yZXNwb25zZSkNCnRhYmxlKGRhdGEkZXhwZWN0ZWRfc2lkZSkNCmBgYA0KDQojIFN0YXRpc3RpY2FsIHRlc3RzDQoNCiMjIENoaS1TcXVhcmUgVGVzdA0KDQpUaGUgY2hpLXNxdWFyZWQgdGVzdCBpcyB1c2VkIHRvIHRlc3QgZm9yIGluZGVwZW5kZW5jZSBiZXR3ZWVuIHR3byBjYXRlZ29yaWNhbCB2YXJpYWJsZXMuIFdlIHBlcmZvcm0gYSBjaGktc3F1YXJlIHRlc3QgdG8gZXhhbWluZSB3aGV0aGVyIHRoZSBjb2xvciBvZiB0aGUgbWFqb3JpdHkgdGVhbSBpcyBpbmRlcGVuZGVudCBmcm9tIHRoZSByZXNwb25zZSBhY2N1cmFjeS4gSWYgdGhlIGNvbG9yIGFmZmVjdHMgdGhlIGFjY3VyYWN5IHRoZW4gdGhlIHAtdmFsdWUgb2YgdGhpcyB0ZXN0IHdpbGwgYmUgc2lnbmlmaWNhbnQgKDwgJFxhbHBoYT0wLjA1JCkNCg0KYGBge3J9DQojIENvbnN0cnVjdGluZyBhIGNvbnRpbmdlbmN5IHRhYmxlDQpjb250aW5nZW5jeV90YWJsZSA8LSB0YWJsZShkYXRhJGV4cGVjdGVkX3NpZGUsIGRhdGEkY29ycmVjdF9yZXNwb25zZSkNCnByaW50KGNvbnRpbmdlbmN5X3RhYmxlKQ0KDQojIFBlcmZvcm1pbmcgdGhlIGNoaS1zcXVhcmUgdGVzdA0KY2hpMl90ZXN0IDwtIGNoaXNxLnRlc3QoY29udGluZ2VuY3lfdGFibGUpDQoNCiMgUHJpbnRpbmcgdGhlIHJlc3VsdHMNCnByaW50KGNoaTJfdGVzdCkNCmBgYA0KIyMgUHJvcG9ydGlvbiB0ZXN0DQoNCldlIHBlcmZvcm0gYSBwcm9wb3J0aW9uIHRlc3QgdG8gZXhhbWluZSB3aGV0aGVyIHRoZSBwcm9wb3J0aW9uIG9mIGNvcnJlY3QgYW5zd2VycyAoYWNjdXJhY3kpIGlzIGRpZmZlcmVudCB3aGVuIHRoZSBtYWpvcml0eSB0ZWFtIGlzIHJlZCBvciB3aGVuIGl0J3MgYmx1ZS4NClRoaXMgaXMgYWN0dWFsbHkgaW5jb3JyZWN0LCBzaW5jZSB0aGUgc2FtZSBzdWJqZWN0IGlzIGFuZCB0aGUgc2FtZSBpbWFnZSBpcyB0ZXN0ZWQgZm9yIGJvdGggY29uZGl0aW9ucyBvZiBpbnRlcmVzdCAoZXhwZWN0ZWRfc2lkZSkuDQoNCmBgYHtyfQ0KcmN0ID0gY29udGluZ2VuY3lfdGFibGVbYygyLCAxKSwgYygyLCAxKV0NCnByaW50KHJjdCkNCnByb3AudGVzdChyY3QsIGNvcnJlY3Q9VFJVRSkNCmBgYA0KIyMgTWNOZW1hcidzIHRlc3QNCg0KVGhlIGh5cG90aGVzaXMgdW5kZXIgY29uc2lkZXJhdGlvbiBpcyBpZiByZXNwb25zZSBhY2N1cmFjeSBpbmNyZWFzZXMgaWYgdGhlIG1ham9yaXR5IHNpZGUgaXMgcmVkLiBUaGUgZmFjdG9ycyBhcmUgcGFpcmVkIGJlY2F1c2UgZWFjaCBzdWJqZWN0IGFuZCBlYWNoIHNjZW5lIGlzIHRlc3RlZCBmb3IgYm90aCByZWQgYW5kIGJsdWUgbWFqb3JpdHkgY29uZmlndXJhdGlvbnMuIEJlY2F1c2UgdGhlIHRlc3RlZCBmYWN0b3JzIGFyZSBwYWlyZWQgYW5kIGJpbmFyeSwgdGhlIGFzc3VtcHRpb25zIG9mIE1jTmVtYXIncyB0ZXN0IGFyZSBzYXRpc2ZpZWQgYW5kIHRoaXMgdGVzdCBjYW4gYmUgYXBwbGllZCB0byB0ZXN0IGZvciB0aGUgcHJlc2VuY2Ugb2YgYW4gZWZmZWN0Lg0KDQpgYGB7cn0NCg0KIyBTcGxpdCBkYXRhIGludG8gdHdvIHNldHM6IG9uZSBmb3IgJ3JlZCcgYW5kIG9uZSBmb3IgJ2JsdWUnDQpkYXRhX3JlZCA8LSBkYXRhW2RhdGEkZXhwZWN0ZWRfc2lkZSA9PSAncmVkJywgYygic3ViamVjdF9pZCIsICJzY2VuZV9pZCIsICJjb3JyZWN0X3Jlc3BvbnNlIildDQpkYXRhX2JsdWUgPC0gZGF0YVtkYXRhJGV4cGVjdGVkX3NpZGUgPT0gJ2JsdWUnLCBjKCJzdWJqZWN0X2lkIiwgInNjZW5lX2lkIiwgImNvcnJlY3RfcmVzcG9uc2UiKV0NCg0KIyBNZXJnZSB0aGUgdHdvIHNldHMgc2lkZSBieSBzaWRlIHVzaW5nIHN1YmplY3RfaWQgYXMgdGhlIGtleQ0Kd2lkZV9kYXRhIDwtIG1lcmdlKGRhdGFfcmVkLCBkYXRhX2JsdWUsIGJ5ID0gYygic3ViamVjdF9pZCIsICJzY2VuZV9pZCIpLCBzdWZmaXhlcyA9IGMoIl9yZWQiLCAiX2JsdWUiKSkNCg0KIyBQZXJmb3JtIE1jTmVtYXIncyBUZXN0DQptY25lbWFyX3Rlc3RfcmVzdWx0IDwtIG1jbmVtYXIudGVzdCh3aWRlX2RhdGEkY29ycmVjdF9yZXNwb25zZV9yZWQsIHdpZGVfZGF0YSRjb3JyZWN0X3Jlc3BvbnNlX2JsdWUsIGNvcnJlY3Q9VFJVRSkNCg0KIyBEaXNwbGF5IHRoZSByZXN1bHQNCnByaW50KG1jbmVtYXJfdGVzdF9yZXN1bHQpDQpgYGANCkdpdmVuIHRoZSBjb250aW5nZW5jeSB0YWJsZSwgd2UgY2FuIGNhbGN1bGF0ZSB0aGUgY29uZmlkZW5jZSBpbnRlcnZhbCBmb3IgdGhlIG9kZHMgcmF0aW8uIFRoZSBPZGRzIFJhdGlvIChPUikgaXMgYSBtZWFzdXJlIG9mIGFzc29jaWF0aW9uIGJldHdlZW4gYW4gZXhwb3N1cmUgYW5kIGFuIG91dGNvbWUuIEluIHRoaXMgY2FzZSB0aGUgT1IgcmVwcmVzZW50cyB0aGUgcmF0aW8gb2YgdGhlIG9kZHMgdGhhdCB0aGUgcmVzcG9uc2Ugb2YgYSBzdWJqZWN0IGlzIGNvcnJlY3Qgd2hlbiB0aGUgbWFqb3JpdHkgdGVhbSBpcyByZWQsIHJlbGF0aXZlIHRvIHRoZSBvZGRzIG9mIGEgY29ycmVjdCBhbnN3ZXIgd2hlbiB0aGUgbWFqb3JpdHkgdGVhbSBjb2xvdXIgaXMgYmx1ZS4NCg0KYGBge3J9DQpvciA9IE9kZHNSYXRpbyhyY3QsIG1ldGhvZD0ibWlkcCIsIGNvbmYubGV2ZWw9MC45NSkNCnByaW50KG9yKQ0KYGBgDQpUaGUgY2FsY3VsYXRlZCBPUiB2YWx1ZSBvZiBgciBvclsxXWAgbWVhbnMgdGhhdCBvZGRzIGluY3JlYXNlIGJ5IGByIG9yWzFdLTFgJSB3aGVuIHRoZSBtYWpvcml0eSB0ZWFtIGNvbG9yIGlzIHJlZC4gVGhlIDk1JSBjb25maWRlbmNlIGludGVydmFsIGZvciB0aGUgT1IgaXMgYHIgb3JbMToyXWAsIGFuZCBpZiBpdCBkb2Vzbid0IGluY2x1ZGUgdGhlIHZhbHVlIG9mIDEgaXQgbWVhbnMgdGhhdCB0aGUgZWZmZWN0IGlzIHNpZ25pZmljYW50IGFuZCBzaG91bGQgY29pbmNpZGUgd2l0aCB0aGUgTWNNbmVtYXIgdGVzdC4NCg0KIyBMb2dpc3RpYyByZWdyZXNzaW9uIA0KYGBge3J9DQpzdW1tYXJ5KGdsbShjb3JyZWN0X3Jlc3BvbnNlIH4gZXhwZWN0ZWRfc2lkZSwgZGF0YSA9IGRhdGEsIGZhbWlseSA9IGJpbm9taWFsKSkNCmBgYA0KDQpgYGB7cn0NCnN1bW1hcnkoZ2xtKGNvcnJlY3RfcmVzcG9uc2UgfiBnZW5kZXIsIGRhdGEgPSBkYXRhLCBmYW1pbHkgPSBiaW5vbWlhbCkpDQpgYGANCg0KYGBge3J9DQpzdW1tYXJ5KGdsbShjb3JyZWN0X3Jlc3BvbnNlIH4gYWdlLCBkYXRhID0gZGF0YSwgZmFtaWx5ID0gYmlub21pYWwpKQ0KYGBgDQoNCiMjIFN1YmplY3QgYXMgcmFuZG9tIGVmZmVjdA0KDQpXZSBmaXQgYSBHTE1NIHdpdGggYSBsb2dpc3RpYyBsaW5rIGZ1bmN0aW9uIHRvIGV4YW1pbmUgdGhlIGluZmx1ZW5jZSBvZiB0ZWFtIGNvbG9yIG9uIHJlc3BvbnNlIGFjY3VyYWN5LCBjb25zaWRlcmluZyB3aXRoaW4tc3ViamVjdCB2YXJpYWJpbGl0eS4NCg0KYGBge3J9DQojIEZpdHRpbmcgdGhlIEdMTU0NCmdsbW1fbW9kZWwgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpLCANCiAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGRhdGEsIA0KICAgICAgICAgICAgICAgICAgICBmYW1pbHkgPSBiaW5vbWlhbCkNCg0KIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWwNCm1vZGVsX3N1bW1hcnkgPSBzdW1tYXJ5KGdsbW1fbW9kZWwpDQpwcmludChtb2RlbF9zdW1tYXJ5KQ0KYGBgDQpUaGUgY29lZmZpY2llbnQgZm9yIGV4cGVjdGVkX3NpZGVyZWQgc3VnZ2VzdHMgdGhhdCwgb24gdGhlIGxvZyBvZGRzIHNjYWxlLCBiZWluZyBpbiB0aGUgInJlZCIgY29uZGl0aW9uIGlzIGFzc29jaWF0ZWQgd2l0aCBhbiBpbmNyZWFzZSBvZiBgciBtb2RlbF9zdW1tYXJ5JGNvZWZmaWNpZW50c1syLCAxXWAgY29tcGFyZWQgdG8gdGhlICJibHVlIiBjb25kaXRpb24uIFRoaXMgZWZmZWN0IGlzIHN0YXRpc3RpY2FsbHkgc2lnbmlmaWNhbnQgKHAgPSBgciBtb2RlbF9zdW1tYXJ5JGNvZWZmaWNpZW50c1syLCA0XWApLg0KDQojIyBTdWJqZWN0IGFuZCBzY2VuZSBhcyByYW5kb20gZWZmZWN0cw0KDQpOZXh0LCB3ZSBmaXQgYSBzaW1pbGFyIG1vZGVsIGJ1dCB3ZSBhZGRpdGlvbmFsbHkgY29uc2lkZXIgY29uc2lkZXJpbmcgd2l0aGluLXN1YmplY3Qgd2l0aGluLXNjZW5lIHZhcmlhYmlsaXR5LiBUaGlzIGlzIG1vdGl2YXRlZCBieSB0aGUgZmFjdCB0aGF0IHRoZSBncm91cGluZyBvZiBwbGF5ZXJzIGluIGEgc2NlbmUgbWlnaHQgbWFrZSBpdCBlYXNpZXIgb3IgaGFyZGVyIHRvIGVzdGltYXRlIHRoZSBtYWpvcml0eSBjb2xvdXIsIHJlZ2FyZGxlc3Mgb2YgdGhlIGFjdHVhbCBjb2xvciBvZiB0aGUgbWFqb3JpdHkuDQoNCmBgYHtyfQ0KIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS4NCg0KZ2xtbV9tb2RlbDEgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCBzY2VuZV9pZCksDQogICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkYXRhLCANCiAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gYmlub21pYWwpDQoNCiMgUHJpbnRpbmcgdGhlIHN1bW1hcnkgb2YgdGhlIG1vZGVsDQptb2RlbF9zdW1tYXJ5MSA9IHN1bW1hcnkoZ2xtbV9tb2RlbDEpDQpwcmludChtb2RlbF9zdW1tYXJ5MSkNCg0KYGBgDQoNCmBgYHtyfQ0KYW5vdmEoZ2xtbV9tb2RlbDEsIGdsbW1fbW9kZWwpDQpgYGANClRoZSBhbm92YSB0ZXN0LCBpbmRpY2F0ZXMgdGhhdCB0aGUgbW9yZSBkZXRhaWxlZCBtb2RlbCBpcyBzaWduaWZpY2FudGx5IGRpZmZlcmVudCB0aGFuIHRoZSBzaW1wbGVyIG1vZGVsLiBBZGRpdGlvbmFsbHksIHRoZSBsb2cgbGlrZWxpaG9vZCBhbmQgQUlDIGFuZCBCSUMgc2NvcmVzIGFyZSBsb3dlciAodGh1cyBiZXR0ZXIpLiBJbiBhZGRpdGlvbiB0aGUgZmFjdCB0aGF0IHRoZSBwLXZhbHVlIGZvciB0aGUgbW9kZWwgY29lZmZpY2llbnQgZm9yIHdoZW4gdGhlIGV4cGVjdGVkX3NpZGUgaXMgcmVkIGlzIGxvd2VyIHdoZW4gdGhlIHNjZW5lIGlkIGlzIGluY2x1ZGVkLCBpbmRpY2F0ZXMgdGhhdCBzY2VuZV9pZCBpcyBpbmRlZWQgYW4gaW1wb3J0YW50IGZhY3RvciBpbiB0aGUgYWNjdXJhY3kuDQoNCmBgYHtyfQ0KIyBJZiB3ZSBhc3N1bWUgdGhhdCB0aGUgYWNjdXJhY3kgZGVwZW5kcyBvbiB0aGUgZXhwZWN0ZWQgc2lkZSwgdGhlIHN1YmplY3QgYW5kIHRoZSBzY2VuZS4NCg0KZ2xtbV9tb2RlbDIgPC0gZ2xtZXIoY29ycmVjdF9yZXNwb25zZSB+IGV4cGVjdGVkX3NpZGUgKiBnZW5kZXIgKyAoMSB8IHN1YmplY3RfaWQpICsgKDEgfCBzY2VuZV9pZCksDQogICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkYXRhLCANCiAgICAgICAgICAgICAgICAgICAgZmFtaWx5ID0gYmlub21pYWwpDQoNCiMgUHJpbnRpbmcgdGhlIHN1bW1hcnkgb2YgdGhlIG1vZGVsDQptb2RlbF9zdW1tYXJ5MiA9IHN1bW1hcnkoZ2xtbV9tb2RlbDIpDQpwcmludChtb2RlbF9zdW1tYXJ5MikNCg0KYGBgDQojIFJlc3BvbnNlIHRpbWUNCg0KRG9lcyBhZ2UgYWZmZWN0IHJlc3BvbnNlIHRpbWU/DQoNCmBgYHtyfQ0KbG1tX21vZGVsMSA8LSBsbWVyKHJlc3BvbnNlX3RpbWUgfiBhZ2UgKyAoMSB8IHNjZW5lX2lkKSArICgxIHwgc3ViamVjdF9pZCksDQogICAgICAgICAgICAgICAgICAgZGF0YSA9IGRhdGEpDQoNCiMgUHJpbnRpbmcgdGhlIHN1bW1hcnkgb2YgdGhlIG1vZGVsDQpwcmludChzdW1tYXJ5KGxtbV9tb2RlbDEpKQ0KYGBgDQoNCkRvZXMgZ2VuZGVyIGluZmx1ZW5jZSByZXNwb25zZSB0aW1lPw0KDQpgYGB7cn0NCmxtbV9tb2RlbDIgPC0gbG1lcihyZXNwb25zZV90aW1lIH4gZ2VuZGVyICsgKDEgfCBzY2VuZV9pZCkgKyAoMSB8IHN1YmplY3RfaWQpLA0KICAgICAgICAgICAgICAgICAgIGRhdGEgPSBkYXRhKQ0KDQojIFByaW50aW5nIHRoZSBzdW1tYXJ5IG9mIHRoZSBtb2RlbA0KcHJpbnQoc3VtbWFyeShsbW1fbW9kZWwyKSkNCmBgYA0KDQojIExlYXJuaW5nIGVmZmVjdA0KDQpXZSBjYW4gY2hlY2sgaWYgdGhlcmUgaXMgYSBsZWFybmluZyBlZmZlY3QuIERvZXMgdGhlIHJlc3BvbnNlIHRpbWUgZGVjcmVhc2Ugd2l0aCB0cmlhbHM/DQoNCmBgYHtyfQ0KZGF0YSR0cmlhbF9ub19zY2FsZWQgPSBkYXRhJHRyaWFsX25vIC8gODAuMA0KbG1tX21vZGVsX2wgPC0gbG1lcihyZXNwb25zZV90aW1lICB+IHRyaWFsX25vX3NjYWxlZCArICgxIHwgc3ViamVjdF9pZCkgKyAoMSB8IHNjZW5lX2lkKSwNCiAgICAgICAgICAgICAgICAgICBkYXRhID0gZGF0YSkNCg0KIyBQcmludGluZyB0aGUgc3VtbWFyeSBvZiB0aGUgbW9kZWwNCnByaW50KHN1bW1hcnkobG1tX21vZGVsX2wpKQ0KYGBgDQoNCg0KIyBDb25jbHVzaW9uDQpBbGwgc3RhdGlzdGljYWwgdGVzdHMgaGF2ZSBzaG93biB0aGF0IHdoZW4gdGhlIG1ham9yaXR5IHRlYW0gY29sb3VyIGlzIHJlZCwgc3ViamVjdCBhcmUgbW9yZSBsaWtlbHkgdG8gaWRlbnRpZnkgdGhlIG1ham9yaXR5IHRlYW0uIA0K</div>
 
 
 
