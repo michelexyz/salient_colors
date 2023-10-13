@@ -3,7 +3,7 @@ import random
 import csv
 import os
 
-named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_b(?P<red_count>\d+)_r(?P<blue_count>\d+)\..+$')
+named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_b(?P<blue_count>\d+)_r(?P<red_count>\d+)\..+$')
 
 def split_scenes_shuffle(file_list, random_seed):
     """
