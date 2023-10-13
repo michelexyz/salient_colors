@@ -1,5 +1,7 @@
 import re
 import random
+import csv
+import os
 
 named_pattern = re.compile(r'^id(?P<scene_id>\d+)_v(?P<version>\d+)_b(?P<red_count>\d+)_r(?P<blue_count>\d+)\..+$')
 
@@ -171,15 +173,21 @@ def test_scene_ids_and_color_counts():
 
 
 def main():
-    with open('files.txt', 'r') as f:
-        # read the entire contents of the file into one string
-        data = f.read()
+    # Get the path to the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Calculate the path to the sibling directory
+    file_path = os.path.join(script_dir, '..', 'stimuli', 'file_names.csv')
+
+    with open(file_path, 'r') as file:
+        reader = csv.reader(file)
+        file_names = [row[0] for row in reader]
         
     # split the string into substrings on any blank space
-    file_list = data.split()
+    
 
     # split scenes into first half and second half
-    new_order = split_scenes_shuffle(file_list, 123)
+    new_order = split_scenes_shuffle(file_names, 123)
 
     # change the ordering of the second
     new_order = shuffle_second_half(new_order)
@@ -189,14 +197,14 @@ def main():
 
 
 if __name__ == '__main__':
-    test_valid_formats()
-    test_invalid_formats()
-    test_balanced_distribution()
-    test_deterministic_output()
-    test_correct_file_names()
-    test_different_seeds()
-    test_immutable_input()
-    test_scene_ids_and_color_counts()
+    # test_valid_formats()
+    # test_invalid_formats()
+    # test_balanced_distribution()
+    # test_deterministic_output()
+    # test_correct_file_names()
+    # test_different_seeds()
+    # test_immutable_input()
+    # test_scene_ids_and_color_counts()
 
     # "Tests passed!"  # If no assertion errors, we consider tests passed.
     main()

@@ -3,10 +3,6 @@ import csv
 
 from ..data_analysis.file_order import split_scenes_shuffle
 
-
-
-
-
 # Open the csv file and read the file names
 with open('file_names.csv', 'r') as file:
     reader = csv.reader(file)
