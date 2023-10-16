@@ -1,0 +1,71 @@
+
+<style>
+    /* Hide the default radio input */
+    input[type="radio"] {
+        display: none;
+    }
+
+    /* Style the label as a button */
+    label.button {
+        display: inline-block;
+        padding: 10px 50px;
+        color: #fff;
+        border: 2px solid #000000;
+        border-radius: 5px;
+        cursor: pointer;
+        /* margin-right: 50px;
+        margin-top: 30px; */
+    }
+    #red_label {
+        background-color: #b52114;
+    }
+    #blue_label {
+        background-color: #1812b5;
+    }
+
+    /* Style the label when the radio input is checked */
+    input[type="radio"]:checked + #red_label {
+        background-color: #ff0000;
+        border-color: #ff0000;
+    }
+    input[type="radio"]:checked + #blue_label {
+        background-color: #0015ff;
+        border-color: #0015ff;
+    }
+
+</style>
+
+<div style="width:100%; height:325px; align-items: center; justify-content: center"></div>
+<input type="radio" class="radio-button" id="red" name="color_response" value="red">
+<label class="button" id="red_label" for="red">Red</label>
+
+<input type="radio" class="radio-button" id="blue" name="color_response" value="blue">
+<label class="button" id="blue_label" for="blue">Blue</label>
+
+
+<input class="submit-button" id="submitButton" type="submit" value="Next" style="display: none">
+<script>
+    startResponseTime = Date.now(); // Start the timer when the page loads
+
+    // Function to calculate and display the time elapsed when the "Submit" button is clicked
+    document.getElementById("submitButton").addEventListener("click", function () {
+        endResponseTime = Date.now();
+        reactionTimeAnswer = (endResponseTime - startResponseTime) ; // Convert to seconds
+
+        // Display the result
+        console.log(`Time passed: ${reactionTimeAnswer} milliseconds`);
+
+        // You can use timePassed for your OpenSesame experiment
+        console.log("EXPERIMENT:")
+        console.log(exp)
+    });
+
+    document.getElementById("blue").addEventListener("click", function () {
+        document.getElementById("submitButton").click()
+    });
+
+    document.getElementById("red").addEventListener("click", function () {
+        document.getElementById("submitButton").click()
+    });
+
+</script>
