@@ -1,0 +1,38 @@
+<h3 style = "margin-bottom: 2rem">WELCOME to the experiment! The first step is to accurately fill-in the following form:</h3>
+<label for="age" style="display: block; margin-bottom: 10px; text-align: left;">Age:</label>
+<input type="number" id="age" name="age" required style="display: block;width: 5rem; padding: 5px; margin-bottom: 10px; text-align: left;">
+<br><br>
+
+<style type="text/css">
+    .block {
+        display: block;
+        text-align: left;
+        margin-top: 5px;
+    }
+</style>
+
+<label for="gender" style="display: block; margin-bottom: 10px; text-align: left;">Gender:</label>
+<form>
+    <label class="block"><input type="radio" name="gender" value="female">Female</label>
+    <label class="block"><input type="radio" name="gender" value="male">Male</label>
+    <label class="block"><input type="radio" name="gender" value="other">Other</label>
+</form>
+<br><br>
+
+<label for="football" style="display: block; margin-bottom: 10px; text-align: left;">When did you play or watch football?</label>
+<form>
+    <label class="block"><input type="radio" name="football" value="last-month">Last month</label>
+    <label class="block"><input type="radio" name="football" value="last-year">Last year</label>
+    <label class="block"><input type="radio" name="football" value="more">More than a year ago</label>
+    <label class="block"><input type="radio" name="football" value="never">Never</label>
+</form>
+<br><br>
+
+<div style="text-align: left;">
+    <label for="daltonism" style="display: block; margin-bottom: 1px; text-align: left;">Do you have any visual impairment affecting your perception of blue or red?</label>
+    <input type="radio" id="yes" name="daltonic" value="yes" required style="margin-bottom: 10px; text-align: left;"> <label for="yes">Yes</label>
+    <input type="radio" id="no" name="daltonic" value="no" required style="margin-bottom: 10px; text-align: left;"> <label for="no">No</label>
+</div>
+<br>
+
+<input type="submit" value="Submit" style="background-color: #007bff; color: #fff; padding: 10px; border: none; cursor: pointer;margin-top: 30px; ">
