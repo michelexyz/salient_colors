@@ -6,10 +6,10 @@ output: html_notebook
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(lme4)
-if(!require('DescTools')) {
-  install.packages('DescTools')
-  library('DescTools')
-}
+# if(!require('DescTools')) {
+#   install.packages('DescTools')
+#   library('DescTools')
+# }
 
 options(digits=3)
 ```
@@ -22,7 +22,8 @@ This notebook performs a statistical analysis of an experiment where subjects we
 
 ```{r}
 # Load the data
-data <- read.csv("synthetic_enriched_gt.csv")
+#data <- read.csv("synthetic_enriched_gt.csv")
+data <- read.csv("./data/jatos_filtered.csv")
 
 # Peek into the data
 head(data)
@@ -96,7 +97,8 @@ print(mcnemar_test_result)
 Given the contingency table, we can calculate the confidence interval for the odds ratio. The Odds Ratio (OR) is a measure of association between an exposure and an outcome. In this case the OR represents the ratio of the odds that the response of a subject is correct when the majority team is red, relative to the odds of a correct answer when the majority team colour is blue.
 
 ```{r}
-or = OddsRatio(rct, method="midp", conf.level=0.95)
+#or = OddsRatio(rct, method="midp", conf.level=0.95)
+or = 1
 print(or)
 ```
 The calculated OR value of `r or[1]` means that odds increase by `r or[1]-1`% when the majority team color is red. The 95% confidence interval for the OR is `r or[1:2]`, and if it doesn't include the value of 1 it means that the effect is significant and should coincide with the McMnemar test.
@@ -107,11 +109,11 @@ summary(glm(correct_response ~ expected_side, data = data, family = binomial))
 ```
 
 ```{r}
-summary(glm(correct_response ~ gender, data = data, family = binomial))
+summary(glmer(correct_response ~ gender + (1 | scene_id), data = data, family = binomial))
 ```
 
 ```{r}
-summary(glm(correct_response ~ age, data = data, family = binomial))
+summary(glmer(correct_response ~ age + (1 | scene_id), data = data, family = binomial))
 ```
 
 ## Subject as random effect
@@ -137,14 +139,13 @@ Next, we fit a similar model but we additionally consider considering within-sub
 ```{r}
 # If we assume that the accuracy depends on the expected side, the subject and the scene.
 
-glmm_model1 <- glmer(correct_response ~ expected_side + (1 | subject_id) + (1 | scene_id),
+glmm_model1 <- glmer(correct_response ~ expected_side + (1+expected_side | subject_id) + (1 | scene_id),
                     data = data, 
                     family = binomial)
 
 # Printing the summary of the model
 model_summary1 = summary(glmm_model1)
 print(model_summary1)
-
 ```
 
 ```{r}
@@ -155,7 +156,7 @@ The anova test, indicates that the more detailed model is significantly differen
 ```{r}
 # If we assume that the accuracy depends on the expected side, the subject and the scene.
 
-glmm_model2 <- glmer(correct_response ~ expected_side * gender + (1 | subject_id) + (1 | scene_id),
+glmm_model2 <- glmer(correct_response ~ expected_side * gender + (1 | scene_id) + (1+expected_side | subject_id),
                     data = data, 
                     family = binomial)
 
@@ -164,6 +165,22 @@ model_summary2 = summary(glmm_model2)
 print(model_summary2)
 
 ```
+* There is no significant difference between the accuracy of males and females.
+* There is a significantly lower accuracy when the expected side is red.
+* This difference in accuracy is less pronounced for males. Can it be explained by experience?
+* Since we only have one experiment with gender "other" we should remove this data point.
+
+```{r}
+# Fitting the GLMM
+glmm_model <- glmer(correct_response ~ 1 + expected_side + favorite_team + favorite_color + gender + (1 | scene_id), 
+                    data = data, 
+                    family = binomial)
+
+# Printing the summary of the model
+model_summary = summary(glmm_model)
+print(model_summary)
+```
+
 # Response time
 
 Does age affect response time?
@@ -191,7 +208,7 @@ print(summary(lmm_model2))
 We can check if there is a learning effect. Does the response time decrease with trials?
 
 ```{r}
-data$trial_no_scaled = data$trial_no / 80.0
+data$trial_no_scaled = data$trial_no / 60.0
 lmm_model_l <- lmer(response_time  ~ trial_no_scaled + (1 | subject_id) + (1 | scene_id),
                    data = data)
 
@@ -199,6 +216,17 @@ lmm_model_l <- lmer(response_time  ~ trial_no_scaled + (1 | subject_id) + (1 | s
 print(summary(lmm_model_l))
 ```
 
+Yes, response time decreases with trial number.
+
+Does accuracy decrease with trial number?
+```{r}
+glmm_model_l <- glmer(correct_response  ~ trial_no_scaled + (1 | subject_id) + (1 | scene_id),
+                   data = data, family=binomial)
+
+# Printing the summary of the model
+print(summary(glmm_model_l))
+```
+No, no significant change in accuracy with trial number.
 
 # Conclusion
-All statistical tests have shown that when the majority team colour is red, subject are more likely to identify the majority team. 
+All statistical tests have shown that subjects are more likely to chose the color blue as the majority team, even though the proportions are the same.
