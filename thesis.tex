@@ -1,0 +1,98 @@
+\documentclass[sigconf,screen,9pt]{acmart}
+
+% Flag to disable all editing macros and make the document ready for
+%  submission.
+\newif\ifEditMode
+
+% Editing mode.
+\EditModetrue
+% % Submission mode.
+% % The `submission' mode merges certain comments and edits, and removes some
+% % other notes, TODOs and remarks. For more details, refer to the `reviewing
+% % macros' in the `vusec.sty' file.
+% \EditModefalse
+
+
+\usepackage{vu}
+\usepackage{frontmatter}
+\usepackage{aliases}
+\usepackage{url}
+
+
+
+\begin{document}
+
+
+%% Thesis title.
+\newcommand{\thesistitle}{More Red Or Blue Players? \\ A Look At Player Group Saliency In Football }
+
+
+%% Author information.
+%% (Used in a couple of places, so it's better to define them in one place.)
+\newcommand{\thauthor}{Megan Hong 2800337 \\Raul Santana Trejo 2778010 \\ Samer Al Hussban 2819952 \\ Michele Vannucci 2819493 \\ Robert Ioiart 2736834 \\}
+\newcommand{\thauthoremail}{}
+\newcommand{\thauthoraff}{Vrije Universiteit Amsterdam}
+
+
+%% Thesis type.
+%% Valid values are `vubachelor', `csmaster', `pdcsmaster', and `litstudy'.
+%%
+% \thtype{csmaster}
+
+%% Thesis title.
+% \thtitle{\thesistitle\thanks{The code for this paper is publicly available at \url{https://github.com/yourusername/yourrepo}}}
+
+%% Paper/thesis author.
+\thauthname{\thauthor}
+
+%% First supervisor.
+% \thsvfirst{First supervisor's name}{First supervisor's title}
+
+%% Daily supervisor.
+% \thsvdaily{Daily supervisor's name}{Daily supervisor's title}
+
+%% Second reader.
+% \thrdrsecond{Second reader's name}{Second reader's title}
+
+
+\title{\thesistitle}
+
+\author{\thauthor}
+\affiliation{
+  \institution{\thauthoraff}
+  \city{Amsterdam}
+  \country{The Netherlands}
+}
+\email{\thauthoremail}
+
+
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\maketitle
+
+% Remove ACM SIGCONF running headers.
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+\input{sections/intro}
+\input{sections/design}
+\input{sections/results}
+\input{sections/discussion}
+% \input{sections/threats}
+% \input{sections/related}
+\input{sections/conclusion}
+
+\bibliographystyle{ACM-Reference-Format}
+\clearpage
+\bibliography{references}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
